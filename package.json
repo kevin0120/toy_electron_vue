@@ -1,10 +1,12 @@
 {
   "name": "electron-quick-start",
   "version": "1.0.0",
-  "description": "A minimal Electron application",
+  "description": "Hello Electron application",
   "main": "main.js",
   "scripts": {
-    "start": "electron ."
+    "start": "electron .",
+    "start:vue": "yarn build:vue && yarn start",
+    "build:vue": "pnpm -C ./vue-app build"
   },
   "repository": "https://github.com/electron/electron-quick-start",
   "keywords": [
@@ -14,7 +16,7 @@
     "tutorial",
     "demo"
   ],
-  "author": "GitHub",
+  "author": "Kevin",
   "license": "CC0-1.0",
   "devDependencies": {
     "electron": "^23.1.2"
