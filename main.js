@@ -1,6 +1,7 @@
 // Modules to control application life and create native browser window
 const {app, BrowserWindow} = require('electron')
 const path = require('path')
+// const configs = require("./shared/config");
 
 function createWindow() {
     // Create the browser window.
@@ -12,15 +13,21 @@ function createWindow() {
         }
     })
 
-    // and load the index.html of the app.
-    mainWindow.loadFile('./vue-app/dist/index.html')
+    // if (configs.systemSettings.loadURL) {
+    //     // and load the url of the app.
+    //     // mainWindow.loadURL('https://github.com')
+    //     // mainWindow.loadURL('http://127.0.0.1:9110/cap/frontend#/cap/monitor/workstations/OP104')
+    //     mainWindow.loadURL(configs.systemSettings.mainWindowURL);
+    // } else {
+    //     // // and load the index.html of the app.
+    //     // mainWindow.loadFile('./app/vue-app/dist/index.html')
+    //     mainWindow.loadFile(configs.systemSettings.mainWindowFile);
+    // }
 
-    // // and load the url of the app.
-    // mainWindow.loadURL('https://github.com')
-
-    mainWindow.setFullScreen(true);
+    mainWindow.loadFile('./app/vue-app/dist/index.html')
+    // mainWindow.setFullScreen(configs.systemSettings.setFullScreen);
     // Open the DevTools.
-    mainWindow.webContents.openDevTools()
+    // mainWindow.webContents.openDevTools()
 }
 
 // This method will be called when Electron has finished
