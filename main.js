@@ -13,7 +13,11 @@ function createWindow() {
     })
 
     // and load the index.html of the app.
-    mainWindow.loadFile('./vue-app/dist/index.html').then(r => console.log("start success"))
+    mainWindow.loadFile('./vue-app/dist/index.html')
+
+    // // and load the url of the app.
+    // mainWindow.loadURL('https://github.com')
+
     mainWindow.setFullScreen(true);
     // Open the DevTools.
     mainWindow.webContents.openDevTools()
