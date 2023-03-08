@@ -7,7 +7,6 @@
     "start": "electron-forge start",
     "start:vue": "yarn build:vue && electron .",
     "build:vue": "pnpm -C ./vue-app build",
-    "package": "electron-forge package",
     "make": "electron-forge make"
   },
   "repository": "https://github.com/electron/electron-quick-start",

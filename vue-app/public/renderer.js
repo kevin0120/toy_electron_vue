@@ -6,4 +6,4 @@
  * to expose Node.js functionality from the main process.
  */
 
-alert("hello vue!!");
+console.log("hello vue!!");
