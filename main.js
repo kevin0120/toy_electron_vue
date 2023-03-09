@@ -1,7 +1,8 @@
 // Modules to control application life and create native browser window
 const {app, BrowserWindow} = require('electron')
 const path = require('path')
-const { loadEnv }= require('vite') ;
+const {loadEnv} = require('vite');
+
 // const configs = require("./shared/config");
 
 function createWindow() {
@@ -21,8 +22,12 @@ function createWindow() {
         // mainWindow.loadFile('./app/vue-app/dist/index.html')
         mainWindow.loadFile(localEnv.index);
 
-    } else {
+    } else if (process.env.Project_Entrance === 'remote-odoo') {
         mainWindow.loadURL(localEnv.index);
+
+    } else {
+        mainWindow.loadFile(localEnv.index);
+
     }
     mainWindow.setFullScreen(true);
     // Open the DevTools.

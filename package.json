@@ -9,8 +9,9 @@
     "vue-app:install": "cd ./app/vue-app && yarn ",
     "vue-app:build": "yarn vue-app:install && pnpm -C ./app/vue-app build",
     "vue-app:serve": "yarn vue-app:install && pnpm -C ./app/vue-app serve",
+    "electron:local:start": "electron ./main.js",
     "electron:vue-app:start": "yarn vue-app:build && cross-env Project_Entrance=vue-app  electron ./main.js",
-    "electron:remote-odoo:start": "electron ./main.js",
+    "electron:remote-odoo:start": "cross-env Project_Entrance=remote-odoo electron ./main.js",
 
 
 
