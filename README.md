@@ -16,8 +16,8 @@ npm install
 # Run the app
 npm start
 ```
-Electron-builder打包详解
+Electron-builder打包详解 推荐Forge 方式
 ```bash
-# https://www.jianshu.com/p/4699b825d285?from=timeline
-#https://www.electron.build/cli
+# https://www.electronforge.io/cli#package
+# https://www.electron.build/cli
 ```
