@@ -18,7 +18,7 @@ if (!process.env.Project_Entrance) {
 function createWindow() {
     // Create the browser window.
     const mainWindow = new BrowserWindow({
-        icon: path.join(__dirname, 'resources/imgs/icon.png'),
+        icon: path.join(__dirname, 'resources/icon.png'),
         width: 800,
         height: 600,
         webPreferences: {

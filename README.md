@@ -33,4 +33,14 @@ cross-env Project_Entrance=vue-app
 2.运行时获取不同的变量文件 loadEnv
 const {loadEnv} = require('vite');
 let localEnv = loadEnv(process.env.Project_Entrance, "./", '')
+
+3.生产环境electron-settings  生成本地配置文件
+```
+
+Electron 混用commonjs 和es6 代码
+```bash
+1使用webpack
+https://blog.csdn.net/qq_41831345/article/details/122959222
+
+https://webpack.js.org/configuration/output/
 ```
