@@ -5,20 +5,15 @@ const path = require('path')
 //
 // const localEnv = loadEnv(process.env.Project_Entrance, './', '')
 const configs = require("./shared/config");
-let project={}
+let project = {}
 if (!process.env.Project_Entrance) {
-    project = {
-        name: 'remote_odoo',
-        connect: 'http://192.168.60.40:9110/cap/frontend#/cap/monitor/workstations/OP104',
-        setFullScreen: true,
-        openDevTools: false,
-        uuid: '3'
-    }
+    project = configs.projects[configs.project]
+} else if (configs.projects.hasOwnProperty(process.env.Project_Entrance)) {
+    project = configs.projects[process.env.Project_Entrance]
+} else {
+    project = {}
 }
 
-if (configs.project.hasOwnProperty(process.env.Project_Entrance)) {
-    project = configs.project[process.env.Project_Entrance]
-}
 
 function createWindow() {
     // Create the browser window.

@@ -1,6 +1,7 @@
 module.exports.defaultConfigs = {
     version: 'v0.1',
-    project: {
+    project: 'remote_odoo',
+    projects: {
         pure: {
             name:'pure',
             connect:'./index.html',
