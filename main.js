@@ -1,15 +1,24 @@
 // Modules to control application life and create native browser window
 const {app, BrowserWindow} = require('electron')
 const path = require('path')
-const {loadEnv} = require('vite');
+// const {loadEnv} = require('vite');
+//
+// const localEnv = loadEnv(process.env.Project_Entrance, './', '')
 const configs = require("./shared/config");
-const localEnv = loadEnv(process.env.Project_Entrance, './', '')
+let project={}
+if (!process.env.Project_Entrance) {
+    project = {
+        name: 'remote_odoo',
+        connect: 'http://192.168.60.40:9110/cap/frontend#/cap/monitor/workstations/OP104',
+        setFullScreen: true,
+        openDevTools: false,
+        uuid: '3'
+    }
+}
 
-
-console.log(configs)
-const project = configs.project[process.env.Project_Entrance]
-console.log(project)
-
+if (configs.project.hasOwnProperty(process.env.Project_Entrance)) {
+    project = configs.project[process.env.Project_Entrance]
+}
 
 function createWindow() {
     // Create the browser window.
@@ -30,8 +39,10 @@ function createWindow() {
     } else if (project.name === 'remote_odoo') {
         mainWindow.loadURL(project.connect);
 
-    } else {
+    } else if (project.name === 'pure') {
         mainWindow.loadFile(project.connect);
+    } else {
+        mainWindow.loadURL('https://cn.bing.com/');
     }
     mainWindow.setFullScreen(project.setFullScreen);
     // Open the DevTools.

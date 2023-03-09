@@ -1,8 +1,8 @@
 module.exports.defaultConfigs = {
     version: 'v0.1',
     project: {
-        local: {
-            name:'local',
+        pure: {
+            name:'pure',
             connect:'./index.html',
             setFullScreen:true,
             openDevTools:true,
@@ -10,14 +10,14 @@ module.exports.defaultConfigs = {
         },
         vue_app: {
             name:'vue_app',
-            connect:'./app/vue-app/dist/index.html',
+            connect:'./app/vue_app/dist/index.html',
             setFullScreen:true,
             openDevTools:true,
             uuid: '2'
         },
         remote_odoo : {
             name:'remote_odoo',
-            connect:'http://127.0.0.1:9110/cap/frontend#/cap/monitor/workstations/OP104',
+            connect:'http://192.168.60.40:9110/cap/frontend#/cap/monitor/workstations/OP104',
             setFullScreen:true,
             openDevTools:false,
             uuid: '3'
