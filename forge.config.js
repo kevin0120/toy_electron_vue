@@ -1,5 +1,11 @@
+const path = require('path')
+
+
 module.exports = {
-  packagerConfig: {},
+  packagerConfig: {
+    icon:path.join(__dirname, '/resources/imgs/') //Windows and macOS
+
+  },
   rebuildConfig: {},
   makers: [
     {
@@ -12,7 +18,11 @@ module.exports = {
     },
     {
       name: '@electron-forge/maker-deb',
-      config: {},
+      config: {
+        options: {
+          icon: path.join(__dirname, '/resources/imgs/icon.png')
+        }//Linux
+      },
     },
     {
       name: '@electron-forge/maker-rpm',

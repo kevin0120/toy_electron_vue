@@ -8,15 +8,14 @@ const {loadEnv} = require('vite');
 function createWindow() {
     // Create the browser window.
     const mainWindow = new BrowserWindow({
+        icon: path.join(__dirname, 'resources/imgs/icon.png'),
         width: 800,
         height: 600,
         webPreferences: {
             preload: path.join(__dirname, 'preload.js')
         }
     })
-
-    let localEnv = loadEnv(process.env.Project_Entrance, "./", '')
-
+    const localEnv = loadEnv(process.env.Project_Entrance, "./", '')
     if (process.env.Project_Entrance === 'vue-app') {
         // // and load the index.html of the app.
         // mainWindow.loadFile('./app/vue-app/dist/index.html')

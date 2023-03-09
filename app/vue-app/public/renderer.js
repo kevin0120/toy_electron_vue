@@ -5,11 +5,12 @@
  * `contextIsolation` is turned on. Use the contextBridge API in `preload.js`
  * to expose Node.js functionality from the main process.
  */
-versions={
-    'chrome':1,
-    'node':2,
-    'electron'  :3
+versions = {
+    'chrome': 1,
+    'node': 2,
+    'electron': 3
 }
+console.log('全局变量window：', window)
 
 window.addEventListener('DOMContentLoaded', () => {
     const replaceText = (selector, text) => {
@@ -18,8 +19,6 @@ window.addEventListener('DOMContentLoaded', () => {
     }
 
     for (const type of ['chrome', 'node', 'electron']) {
-        replaceText(`${type}-version`,versions[type])
+        replaceText(`${type}-version`, versions[type])
     }
 })
-
-console.log("hello vue!!");

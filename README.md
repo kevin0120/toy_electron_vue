@@ -16,8 +16,18 @@ npm install
 # Run the app
 npm start
 ```
-Electron-builder打包详解 推荐Forge 方式
+Electron打包详解 推荐Forge 方式
 ```bash
 # https://www.electronforge.io/cli#package
 # https://www.electron.build/cli
+```
+
+Electron 变量管理
+```bash
+1.script 中 传递到process.env中
+cross-env Project_Entrance=vue-app
+
+2.运行时获取不同的变量文件 loadEnv
+const {loadEnv} = require('vite');
+let localEnv = loadEnv(process.env.Project_Entrance, "./", '')
 ```
