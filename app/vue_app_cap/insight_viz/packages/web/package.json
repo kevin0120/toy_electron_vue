@@ -1,0 +1,35 @@
+{
+  "name": "web",
+  "private": true,
+  "version": "1.0.0",
+  "description": "数据分析平台PC端项目",
+  "scripts": {
+    "dev": "vite",
+    "type-checking": "vue-tsc --noEmit",
+    "build": "vue-tsc --noEmit && vite build  --base=/cap/static/",
+    "build:test": "vue-tsc --noEmit && vite build",
+    "preview": "vite preview",
+    "test": "vitest --watch  --config ./vitest.config.ts",
+    "test:e2e": "pnpm exec playwright test",
+    "coverage": "vitest run --coverage"
+  },
+  "dependencies": {
+    "@fingerprintjs/fingerprintjs": "^3.3.6",
+    "@insight-viz/business": "workspace:^1.0.0",
+    "@nutui/icons-vue": "^0.0.25",
+    "@nutui/nutui": "^4.0.0",
+    "@popperjs/core": "^2.11.6",
+    "js-cookie": "^3.0.1",
+    "nprogress": "^0.2.0",
+    "primeflex": "^3.2.1",
+    "primeicons": "^5.0.0",
+    "primevue": "^3.23.0",
+    "sortablejs": "^1.15.0",
+    "type-gverify": "^1.0.3"
+  },
+  "devDependencies": {
+    "@types/js-cookie": "^3.0.2",
+    "@types/nprogress": "^0.2.0",
+    "@types/sortablejs": "^1.15.0"
+  }
+}

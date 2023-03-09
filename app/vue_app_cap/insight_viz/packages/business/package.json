@@ -1,0 +1,14 @@
+{
+  "name": "@insight-viz/business",
+  "version": "1.0.0",
+  "description": "数据分析平台公共业务逻辑",
+  "main": "index.ts",
+  "module": "index.ts",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}

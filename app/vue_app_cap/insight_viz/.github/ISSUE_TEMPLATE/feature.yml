@@ -1,0 +1,52 @@
+name: 需求提交
+description: 提交一个新的需求或者特性
+title: '[Feature]: '
+labels: [ "feature?" ]
+
+body:
+  # User's README and agreement
+  - type: markdown
+    attributes:
+      value: |
+        ## 请按照以下要求进行提交
+        ### 1. 提交后需要指定标签和截止时间。
+        ### 2. 需要指派责任人。
+        ---
+
+  - type: markdown
+    attributes:
+      value: |
+        ## 需求详情
+        请根据实际使用情况修改以下信息。
+
+  - type: input
+    id: env-project-name
+    attributes:
+      label: 项目名称
+    validations:
+      required: true
+
+  - type: input
+    id: env-project-no
+    attributes:
+      label: 项目编号
+    validations:
+      required: true
+
+  - type: textarea
+    id: env-feature-context
+    attributes:
+      label: 需求目标
+      description: "描述详细的需求内容，需要具体到可以执行。"
+      value: |
+        1.
+        2.
+        3.
+        ...
+    validations:
+      required: true
+
+  - type: textarea
+    id: extra-desc
+    attributes:
+      label: 补充说明（可选）

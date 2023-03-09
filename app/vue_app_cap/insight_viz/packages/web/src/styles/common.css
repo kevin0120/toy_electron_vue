@@ -1,0 +1,72 @@
+.c-card{
+  border-radius: 12px;
+  border: 1px solid #dee2e6;
+}
+.cap-label{
+  font-size: 1.2rem;
+  font-family: PingFangSC-Medium, PingFang SC;
+  font-weight: 600;
+  color: #343A40;
+}
+.cap-label-text{
+  font-size: 1rem;
+  font-family: PingFangSC-Regular, PingFang SC;
+  line-height: 1;
+  font-weight: 400;
+  color: #495057;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+.h-16 {
+  height: 16%;
+}
+.h-84 {
+  height: 84%;
+}
+.h-calc-10rem {
+  height:  calc(100% - 10rem);
+}
+
+/*结果标签*/
+.customer-badge {
+  /*padding: 2px 5px;*/
+  border-radius: 4px;
+  text-transform: uppercase;
+  width: 60px;
+  vertical-align: middle;
+  text-align: center;
+  font-weight: 500;
+}
+/*表格中结果状态样式*/
+.status-ok {
+  background: #C8E6C9;
+  color: #256029;
+}
+.status-nok {
+  background: #FFCDD2;
+  color: #C63737;
+}
+.status-ready {
+  background: #d3d1d1;
+  color: #6C757D;
+}
+
+/*表格展开文字标签样式*/
+.analyze-info-label {
+  font-weight: 600;
+}
+.analyze-info-key {
+  width: 6rem;
+  height: 1.5rem;
+  line-height: 1.5rem;
+}
+.analyze-info-value {
+  height: 1.5rem;
+  line-height: 1.5rem;
+}
+/*重置按钮背景颜色*/
+.rest {
+  background: #ffffff !important;
+  color: var(--blue-500) !important;
+}

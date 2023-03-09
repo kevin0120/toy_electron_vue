@@ -6,6 +6,7 @@
  * https://www.electronjs.org/docs/latest/tutorial/sandbox
  */
 console.log('全局变量process：', process)
+console.log('全局变量window：', window)
 window.addEventListener('DOMContentLoaded', () => {
     const replaceText = (selector, text) => {
         const element = document.getElementById(selector)

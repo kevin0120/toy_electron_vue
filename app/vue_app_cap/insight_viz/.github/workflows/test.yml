@@ -1,0 +1,57 @@
+---
+name: TEST
+
+on:
+  pull_request:
+    branches: [master, main]
+
+jobs:
+  unit_test:
+    name: Unit Test
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+
+      # something do unit test or other
+  e2e-test:
+    name: e2e Test
+    timeout-minutes: 60
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-node@v3
+        name: setup node
+        with:
+          node-version: 16
+      - name: Install pnpm
+        run: npm i -g pnpm
+      # 缓存 node_modules
+      - name: Cache dependencies
+        uses: actions/cache@v3
+        id: pnpm-cache
+        with:
+          path: |
+            **/node_modules
+          key: ${{ runner.os }}-pnpm-${{ hashFiles('**/pnpm-lock.yaml') }}
+          restore-keys: |
+            ${{ runner.os }}-pnpm-
+      # 如果缓存没有命中，安装依赖
+      - name: Install dependencies
+        if: steps.pnpm-cache.outputs.cache-hit != 'true'
+        run: pnpm i
+      - name: Install Playwright Browsers
+        run: pnpm exec playwright install --with-deps
+      - name: Run e2e tests
+        run: pnpm run test:web-e2e
+      - uses: actions/upload-artifact@v3
+        if: always()
+        with:
+          name: playwright-report
+          path: packages/web/playwright-report/
+          retention-days: 5

@@ -1,0 +1,17 @@
+version = 1
+
+test_patterns = [
+  "**/test/**",
+  "**/tests/**"
+]
+
+exclude_patterns = ["docs/**", "**/public/**,", "**/dist/**"]
+
+[[analyzers]]
+name = "javascript"
+
+  [analyzers.meta]
+  plugins = ["vue"]
+  environment = ["nodejs", "browser", "vitest"]
+  module_system = "es-modules"
+  dialect = "typescript"

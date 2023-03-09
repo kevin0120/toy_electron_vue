@@ -2,8 +2,14 @@
 const {app, BrowserWindow} = require('electron')
 const path = require('path')
 const {loadEnv} = require('vite');
+const configs = require("./shared/config");
+const localEnv = loadEnv(process.env.Project_Entrance, './', '')
 
-// const configs = require("./shared/config");
+
+console.log(configs)
+const project = configs.project[process.env.Project_Entrance]
+console.log(project)
+
 
 function createWindow() {
     // Create the browser window.
@@ -15,22 +21,23 @@ function createWindow() {
             preload: path.join(__dirname, 'preload.js')
         }
     })
-    const localEnv = loadEnv(process.env.Project_Entrance, "./", '')
-    if (process.env.Project_Entrance === 'vue-app') {
+
+    if (project.name === 'vue_app') {
         // // and load the index.html of the app.
         // mainWindow.loadFile('./app/vue-app/dist/index.html')
-        mainWindow.loadFile(localEnv.index);
+        mainWindow.loadFile(project.connect);
 
-    } else if (process.env.Project_Entrance === 'remote-odoo') {
-        mainWindow.loadURL(localEnv.index);
+    } else if (project.name === 'remote_odoo') {
+        mainWindow.loadURL(project.connect);
 
     } else {
-        mainWindow.loadFile(localEnv.index);
-
+        mainWindow.loadFile(project.connect);
     }
-    mainWindow.setFullScreen(true);
+    mainWindow.setFullScreen(project.setFullScreen);
     // Open the DevTools.
-    mainWindow.webContents.openDevTools()
+    if (project.openDevTools) {
+        mainWindow.webContents.openDevTools()
+    }
 
 }
 

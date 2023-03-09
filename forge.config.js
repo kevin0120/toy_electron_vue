@@ -1,16 +1,13 @@
-const path = require('path')
-
-
 module.exports = {
   packagerConfig: {
-    icon:path.join(__dirname, '/resources/imgs/') //Windows and macOS
-
+    icon:'./resources/icon'
   },
   rebuildConfig: {},
   makers: [
     {
       name: '@electron-forge/maker-squirrel',
-      config: {},
+      config: {
+      },
     },
     {
       name: '@electron-forge/maker-zip',
@@ -20,13 +17,12 @@ module.exports = {
       name: '@electron-forge/maker-deb',
       config: {
         options: {
-          icon: path.join(__dirname, '/resources/imgs/icon.png')
         }//Linux
       },
     },
-    {
-      name: '@electron-forge/maker-rpm',
-      config: {},
-    },
+    // {
+    //   name: '@electron-forge/maker-rpm',
+    //   config: {},
+    // },
   ],
 };

@@ -20,6 +20,9 @@ Electron打包详解 推荐Forge 方式
 ```bash
 # https://www.electronforge.io/cli#package
 # https://www.electron.build/cli
+
+# (生成图标图片)
+https://www.jianshu.com/p/20683c387fa0 
 ```
 
 Electron 变量管理
