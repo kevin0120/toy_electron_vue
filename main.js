@@ -1,6 +1,7 @@
 // Modules to control application life and create native browser window
 const {app, BrowserWindow} = require('electron')
 const path = require('path')
+const { loadEnv }= require('vite') ;
 // const configs = require("./shared/config");
 
 function createWindow() {
@@ -13,21 +14,20 @@ function createWindow() {
         }
     })
 
-    // if (configs.systemSettings.loadURL) {
-    //     // and load the url of the app.
-    //     // mainWindow.loadURL('https://github.com')
-    //     // mainWindow.loadURL('http://127.0.0.1:9110/cap/frontend#/cap/monitor/workstations/OP104')
-    //     mainWindow.loadURL(configs.systemSettings.mainWindowURL);
-    // } else {
-    //     // // and load the index.html of the app.
-    //     // mainWindow.loadFile('./app/vue-app/dist/index.html')
-    //     mainWindow.loadFile(configs.systemSettings.mainWindowFile);
-    // }
-    mainWindow.loadURL('http://127.0.0.1:9110/cap/frontend#/cap/monitor/workstations/OP104')
-    // mainWindow.loadFile('./app/vue-app/dist/index.html')
+    let localEnv = loadEnv(process.env.Project_Entrance, "./", '')
+
+    if (process.env.Project_Entrance === 'vue-app') {
+        // // and load the index.html of the app.
+        // mainWindow.loadFile('./app/vue-app/dist/index.html')
+        mainWindow.loadFile(localEnv.index);
+
+    } else {
+        mainWindow.loadURL(localEnv.index);
+    }
     mainWindow.setFullScreen(true);
     // Open the DevTools.
     mainWindow.webContents.openDevTools()
+
 }
 
 // This method will be called when Electron has finished
@@ -36,7 +36,6 @@ function createWindow() {
 
 app.on('ready', function () {
     createWindow()
-
     app.on('activate', function () {
         // On macOS it's common to re-create a window in the app when the
         // dock icon is clicked and there are no other windows open.
