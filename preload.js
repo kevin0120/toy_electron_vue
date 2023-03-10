@@ -22,10 +22,15 @@ window.addEventListener('DOMContentLoaded', () => {
 const { contextBridge, ipcRenderer } = require('electron')
 
 // contextBridge.exposeInMainWorld('electronAPI', {
-//     setTitle: (title) => ipcRenderer.send('set-title', title)
+//     setTitle: (title) => ipcRenderer.send('set-title', title),
+//     openFile: () => ipcRenderer.invoke('dialog:openFile'),
+//     handleCounter: (callback) => ipcRenderer.on('update-counter', callback)
 // })
 
 // 上下文隔离禁用的情况下使用预加载
 window.electronAPI = {
-    setTitle: (title) => ipcRenderer.send('set-title', title)
+    setTitle: (title) => ipcRenderer.send('set-title', title),
+    openFile: () => ipcRenderer.invoke('dialog:openFile'),
+    handleCounter: (callback) => ipcRenderer.on('update-counter', callback)
+
 }

@@ -1,5 +1,5 @@
 // Modules to control application life and create native browser window
-const {app, BrowserWindow, ipcMain} = require('electron')
+const {app, BrowserWindow, ipcMain, dialog,Menu} = require('electron')
 const path = require('path')
 // const {loadEnv} = require('vite');
 //
@@ -28,6 +28,25 @@ function createWindow() {
             preload: path.join(__dirname, 'preload.js')
         }
     })
+
+
+    // 模式 3：主进程到渲染器进程
+    const menu = Menu.buildFromTemplate([
+        {
+            label: app.name,
+            submenu: [
+                {
+                    click: () => mainWindow.webContents.send('update-counter', 1),
+                    label: 'Increment',
+                },
+                {
+                    click: () => mainWindow.webContents.send('update-counter', -1),
+                    label: 'Decrement',
+                }
+            ]
+        }
+    ])
+    Menu.setApplicationMenu(menu)
 
     if (project.name === 'vue_app') {
         // // and load the index.html of the app.
@@ -68,11 +87,26 @@ function handleSetTitle (event, title) {
     // console.log(win,title)
     win.setTitle(title)
 }
-
+async function handleFileOpen() {
+    const { canceled, filePaths } = await dialog.showOpenDialog()
+    if (canceled) {
+        return
+    } else {
+        return filePaths[0]
+    }
+}
 
 app.on('ready', function () {
-    ipcMain.on('set-title', handleSetTitle)
 
+
+    // 模式 1：渲染器进程到主进程（单向）
+    ipcMain.on('set-title', handleSetTitle)
+    // 模式 2：渲染器进程到主进程（双向）
+    ipcMain.handle('dialog:openFile', handleFileOpen)
+    // 模式 3：主进程到渲染器进程
+    ipcMain.on('counter-value', (_event, value) => {
+        console.log(value) // will print value to Node console
+    })
     createWindow()
     app.on('activate', function () {
         // On macOS it's common to re-create a window in the app when the

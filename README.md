@@ -10,6 +10,8 @@ A basic Electron application needs just these files:
 ````bash
 # electron入门
   https://www.electronjs.org/zh/docs/latest/tutorial/quick-start
+  
+  http://www.17bigdata.com/book/electron/ZaiZhuJinChengNeiKeYongDeMoKuai/ELECTRONMENUMoKuai.html
 ````
 
 ```bash
