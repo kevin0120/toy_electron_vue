@@ -5,6 +5,7 @@ const path = require('path')
 //
 // const localEnv = loadEnv(process.env.Project_Entrance, './', '')
 const configs = require("./shared/config");
+const url = require("url");
 let project = {}
 if (!process.env.Project_Entrance) {
     project = configs.projects[configs.project]
@@ -22,6 +23,8 @@ function createWindow() {
         width: 800,
         height: 600,
         webPreferences: {
+            nodeIntegration: true,
+            contextIsolation: false,
             preload: path.join(__dirname, 'preload.js')
         }
     })
@@ -32,9 +35,15 @@ function createWindow() {
         mainWindow.loadFile(project.connect);
 
     } else if (project.name === 'remote_odoo') {
-        mainWindow.loadURL(project.connect);
+        mainWindow.loadURL(project.connect).then(r => console.log("dd"), r => console.log("11"));
 
     } else if (project.name === 'pure') {
+        // mainWindow.loadURL(url.format({
+        //     pathname: path.join(__dirname, 'index.html'),
+        //     protocol: 'file',
+        //     hash: '/',
+        //     slashes: false
+        // }))
         mainWindow.loadFile(project.connect);
     } else {
         mainWindow.loadURL('https://cn.bing.com/');
@@ -53,6 +62,13 @@ function createWindow() {
 
 app.on('ready', function () {
     createWindow()
+
+    console.log(url.format({
+        pathname: path.join(__dirname, 'index.html'),
+        protocol: 'http',
+        hash: '/',
+        slashes: false
+    }))
     app.on('activate', function () {
         // On macOS it's common to re-create a window in the app when the
         // dock icon is clicked and there are no other windows open.

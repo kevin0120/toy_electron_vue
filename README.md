@@ -5,6 +5,12 @@ A basic Electron application needs just these files:
 - `main.js` - Starts the app and creates a browser window to render HTML. This is the app's **main process**.
 - `index.html` - A web page to render. This is the app's **renderer process**.
 - `preload.js` - A content script that runs before the renderer process loads.
+`
+  
+````bash
+# electron入门
+  https://www.electronjs.org/zh/docs/latest/tutorial/quick-start
+````
 
 ```bash
 # Clone this repository
@@ -43,4 +49,13 @@ Electron 混用commonjs 和es6 代码
 https://blog.csdn.net/qq_41831345/article/details/122959222
 
 https://webpack.js.org/configuration/output/
+```
+
+Electron 渲染进程 或者原始js使用node对象或函数
+```bash
+ 1           nodeIntegration: true,
+            contextIsolation: false,
+            
+            
+ 2 webpack插件之html-webpack-plugin
 ```

@@ -5,7 +5,7 @@ module.exports.defaultConfigs = {
         pure: {
             name:'pure',
             connect:'./index.html',
-            setFullScreen:true,
+            setFullScreen:false,
             openDevTools:true,
             uuid: '1'
         },
