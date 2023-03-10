@@ -1,5 +1,5 @@
 // Modules to control application life and create native browser window
-const {app, BrowserWindow} = require('electron')
+const {app, BrowserWindow, ipcMain} = require('electron')
 const path = require('path')
 // const {loadEnv} = require('vite');
 //
@@ -45,6 +45,8 @@ function createWindow() {
         //     slashes: false
         // }))
         mainWindow.loadFile(project.connect);
+
+        // console.log(mainWindow.webContents)
     } else {
         mainWindow.loadURL('https://cn.bing.com/');
     }
@@ -60,15 +62,18 @@ function createWindow() {
 // initialization and is ready to create browser windows.
 // Some APIs can only be used after this event occurs.
 
-app.on('ready', function () {
-    createWindow()
+function handleSetTitle (event, title) {
+    const webContents = event.sender
+    const win = BrowserWindow.fromWebContents(webContents)
+    // console.log(win,title)
+    win.setTitle(title)
+}
 
-    console.log(url.format({
-        pathname: path.join(__dirname, 'index.html'),
-        protocol: 'http',
-        hash: '/',
-        slashes: false
-    }))
+
+app.on('ready', function () {
+    ipcMain.on('set-title', handleSetTitle)
+
+    createWindow()
     app.on('activate', function () {
         // On macOS it's common to re-create a window in the app when the
         // dock icon is clicked and there are no other windows open.

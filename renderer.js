@@ -7,5 +7,12 @@
  */
 
 // console.log('renderer全局变量process：', process)
-console.log('renderer 全局变量window：', window)
-console.log('renderer 全局变量process：', process)
+// console.log('renderer 全局变量window：', window)
+// console.log('renderer 全局变量process：', process)
+
+const setButton = document.getElementById('btn')
+const titleInput = document.getElementById('title')
+setButton.addEventListener('click', () => {
+    const title = titleInput.value
+    window.electronAPI.setTitle(title)
+});

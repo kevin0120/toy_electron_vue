@@ -13,7 +13,7 @@
     "electron:local:start": "electron ./main.js",
     "electron:vue_app:start": "yarn vue-app:build && cross-env Project_Entrance=vue_app  electron ./main.js",
     "electron:remote_odoo:start": "cross-env Project_Entrance=remote_odoo electron ./main.js",
-    "start": "cross-env NODE_ENV=development Project_Entrance=pure electron ./main.js",
+    "start": "cross-env NODE_ENV=development Project_Entrance=pure electron  --inspect=5858 ./main.js",
     "package": "electron-forge package",
     "make": "electron-forge make"
   },

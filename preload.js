@@ -17,3 +17,15 @@ window.addEventListener('DOMContentLoaded', () => {
         replaceText(`${type}-version`, process.versions[type])
     }
 })
+
+
+const { contextBridge, ipcRenderer } = require('electron')
+
+// contextBridge.exposeInMainWorld('electronAPI', {
+//     setTitle: (title) => ipcRenderer.send('set-title', title)
+// })
+
+// 上下文隔离禁用的情况下使用预加载
+window.electronAPI = {
+    setTitle: (title) => ipcRenderer.send('set-title', title)
+}
