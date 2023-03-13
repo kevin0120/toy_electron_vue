@@ -25,6 +25,7 @@ module.exports.defaultConfigs = {
         },
         vue_app_cap: {
             name:'vue_app_cap',
+            connect:'./app/vue_app_cap/insight_viz/packages/web/dist/index.html',
             setFullScreen:true,
             openDevTools:false,
             uuid: '4'

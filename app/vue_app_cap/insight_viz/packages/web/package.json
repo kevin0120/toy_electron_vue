@@ -7,7 +7,7 @@
     "dev": "vite",
     "type-checking": "vue-tsc --noEmit",
     "build": "vue-tsc --noEmit && vite build  --base=/cap/static/",
-    "build:test": "vue-tsc --noEmit && vite build",
+    "build:test": "vue-tsc --noEmit && vite build --base=/cap/static/",
     "preview": "vite preview",
     "test": "vitest --watch  --config ./vitest.config.ts",
     "test:e2e": "pnpm exec playwright test",

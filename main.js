@@ -4,7 +4,8 @@ const path = require('path')
 // const {loadEnv} = require('vite');
 //
 // const localEnv = loadEnv(process.env.Project_Entrance, './', '')
-const configs = require("./shared/config");
+// const configs = require("./shared/config");
+import configs from "./shared/config"
 const url = require("url");
 let project = {}
 if (!process.env.Project_Entrance) {
@@ -29,7 +30,7 @@ function createWindow() {
         }
     })
 
-
+    // app.setName("Hello Vue")
     // 模式 3：主进程到渲染器进程
     const menu = Menu.buildFromTemplate([
         {
@@ -54,7 +55,10 @@ function createWindow() {
         mainWindow.loadFile(project.connect);
 
     } else if (project.name === 'remote_odoo') {
-        mainWindow.loadURL(project.connect).then(r => console.log("dd"), r => console.log("11"));
+        mainWindow.loadURL(project.connect);
+
+    } else if (project.name === 'vue_app_cap') {
+        mainWindow.loadFile(project.connect);
 
     } else if (project.name === 'pure') {
         // mainWindow.loadURL(url.format({

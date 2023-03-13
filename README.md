@@ -61,3 +61,12 @@ Electron 渲染进程 或者原始js使用node对象或函数
             
  2 webpack插件之html-webpack-plugin
 ```
+
+webpack
+```bash
+ 解决node不能识别import的问题  
+ 1 跟目录运行webpack  自动寻找webpack.config.js
+webpack --config ./configs/webpack.config.main.prod.babel.js 
+
+2. 可以加运行时参数 node -r @babel/register ./test_webpack/src/index.js 
+```
