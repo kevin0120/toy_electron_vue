@@ -67,4 +67,13 @@ https://babeljs.io/docs/babel-preset-typescript
 
 webpack 中编译 ts 有两种方式ts-loader 和 babel-loader + @babel/preset-typescript
 https://www.zybuluo.com/Dale-Lin/note/2380838
+https://www.webpackjs.com/loaders/babel-loader/
+```
+
+
+vue
+```bash
+1使用vue cli
+https://cli.vuejs.org/zh/config/
+
 ```
