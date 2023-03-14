@@ -16,7 +16,9 @@
     "electron:remote_odoo:start": "cross-env NODE_ENV=development Project_Entrance=remote_odoo electron -r @babel/register ./main.js",
     "start": "cross-env NODE_ENV=development Project_Entrance=pure electron -r @babel/register ./main.js",
     "package": "electron-forge package",
-    "make": "electron-forge make"
+    "make": "electron-forge make",
+    "test:webpack": "rm -r ./test_webpack/dist && webpack  --config ./test_webpack/webpack.config.js && node ./test_webpack/dist/main.js",
+    "test:babel": "node -r @babel/register  ./test_webpack/src/index.js"
   },
   "repository": " https://github.com/kevin0120/toy_electron_vue.git",
   "keywords": [

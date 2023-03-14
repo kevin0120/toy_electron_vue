@@ -61,4 +61,10 @@ webpack --config ./configs/webpack.config.main.prod.babel.js
 
 2. 可以加运行时参数 node -r @babel/register ./test_webpack/src/index.js 
 https://babeljs.io/docs/babel-preset-typescript
+
+
+@babel/register 和 webpack的babel-loader都会寻找babel.config.js文件!!!
+
+webpack 中编译 ts 有两种方式ts-loader 和 babel-loader + @babel/preset-typescript
+https://www.zybuluo.com/Dale-Lin/note/2380838
 ```
