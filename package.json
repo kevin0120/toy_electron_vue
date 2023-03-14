@@ -72,7 +72,7 @@
     "babel-plugin-transform-react-remove-prop-types": "^0.4.19",
     "core-js": "^3.29.1",
     "cross-env": "^7.0.3",
-    "electron-settings": "^3.2.0",
+    "electron-settings": "^4.0.2",
     "electron-squirrel-startup": "^1.0.0",
     "fs-extra": "^11.1.0",
     "react-hot-loader": "^4.13.1",
