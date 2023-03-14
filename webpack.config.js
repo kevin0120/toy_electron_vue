@@ -8,5 +8,18 @@ module.exports = {
         filename: "main.js"
     },
     module: {
+        rules: [
+            {
+                test: /\.ts$/,
+                exclude: /node_modules[^(react\-pdf)]/,
+                use: {
+                    loader: 'babel-loader',
+                    options: {
+                        cacheDirectory: true
+                    }
+                }
+            }
+
+        ]
     }
 };

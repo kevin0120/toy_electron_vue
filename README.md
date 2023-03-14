@@ -60,4 +60,5 @@ webpack  Electron 混用commonjs 和es6 代码
 webpack --config ./configs/webpack.config.main.prod.babel.js 
 
 2. 可以加运行时参数 node -r @babel/register ./test_webpack/src/index.js 
+https://babeljs.io/docs/babel-preset-typescript
 ```

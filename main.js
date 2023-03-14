@@ -5,7 +5,7 @@ const path = require('path')
 //
 // const localEnv = loadEnv(process.env.Project_Entrance, './', '')
 // const configs = require("./shared/config");
-import configs from "./shared/config"
+import configs from "./shared/config";
 const url = require("url");
 let project = {}
 if (!process.env.Project_Entrance) {
