@@ -53,16 +53,7 @@ https://blog.csdn.net/qq_41831345/article/details/122959222
 https://webpack.js.org/configuration/output/
 ```
 
-Electron 渲染进程 或者原始js使用node对象或函数
-```bash
- 1           nodeIntegration: true,
-            contextIsolation: false,
-            
-            
- 2 webpack插件之html-webpack-plugin
-```
-
-webpack
+webpack  Electron 混用commonjs 和es6 代码
 ```bash
  解决node不能识别import的问题  
  1 跟目录运行webpack  自动寻找webpack.config.js
