@@ -1,5 +1,6 @@
 const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
+const webpack = require("webpack");
 
 module.exports = {
     mode: 'development',
@@ -57,7 +58,10 @@ module.exports = {
         new HtmlWebpackPlugin({
             template: './test_webpack/entry/index.html', // 以当前文件为模板创建新的HtML(1. 结构和原来一样 2. 会自动引入打包的资源)
         }),
-
+        new webpack.EnvironmentPlugin({
+            NODE_ENV: 'development', // use 'development' unless process.env.NODE_ENV is defined
+            DEBUG: true,
+        }),
     ],
     devServer: {
         proxy: {
