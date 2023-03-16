@@ -13,7 +13,7 @@ module.exports = {
     },
     resolve: {
         alias: {
-            '@': path.join(__dirname, './demos/')
+            '@': path.join(__dirname, './demos')
         }
 
     },
@@ -29,29 +29,41 @@ module.exports = {
                     }
                 }
             },
-            // {
-            //     test: /\.jsx?$/,
-            //     exclude: /node_modules/,
-            //     use: {
-            //         loader: 'babel-loader',
-            //         options: {
-            //             presets: ['es2015', 'react']
-            //         }
-            //     }
-            // }
+            {
+                test: /\.jsx?$/,
+                exclude: /node_modules/,
+                use: {
+                    loader: 'babel-loader',
+                    options: {
+                        cacheDirectory: true
+                    }
+                }
+            },
+            {
+                test: /\.css$/,
+                use: ['style-loader', 'css-loader']
+            },
+
+            // webpack5已经升级
+            {
+                test: /\.(png|jpg)$/,
+                type: 'asset/resource'
+            },
 
         ]
     },
+
     plugins: [
         new HtmlWebpackPlugin({
             template: './test_webpack/entry/index.html', // 以当前文件为模板创建新的HtML(1. 结构和原来一样 2. 会自动引入打包的资源)
         }),
+
     ],
     devServer: {
         proxy: {
             '/api': {
                 target: 'http://211.254.254.251:3000',
-                pathRewrite: { '^/api': '' },
+                pathRewrite: {'^/api': ''},
             },
             "/websocket": {
                 target: "ws://211.254.254.251:9001/", //代理的后台地址
