@@ -6,7 +6,7 @@
   "description": "Hello Electron application",
   "main": "main.js",
   "scripts": {
-    "build": "webpack",
+    "build": "webpack --config ./test_webpack/webpack.config.js ",
     "vue_app:install": "cd ./app/vue_app && yarn ",
     "vue_app:build": "yarn vue_app:install && pnpm -C ./app/vue_app build",
     "vue_app:serve": "yarn vue_app:install && pnpm -C ./app/vue_app serve",
@@ -17,7 +17,7 @@
     "start": "cross-env NODE_ENV=development Project_Entrance=pure electron -r @babel/register ./main.js",
     "package": "electron-forge package",
     "make": "electron-forge make",
-    "test:webpack": "rm -r ./test_webpack/dist && webpack  --config ./test_webpack/webpack.config.js && node ./test_webpack/dist/main.js",
+    "test:webpack": "webpack-dev-server  --config ./test_webpack/webpack.config.js && node ./test_webpack/dist/main.js",
     "test:babel": "node -r @babel/register  ./test_webpack/src/index.js"
   },
   "repository": " https://github.com/kevin0120/toy_electron_vue.git",
@@ -35,8 +35,10 @@
     "@electron-forge/maker-squirrel": "^6.0.5",
     "@electron-forge/maker-zip": "^6.0.5",
     "electron": "^23.1.2",
-    "webpack": "^5.76.0",
-    "webpack-cli": "^3.1.2"
+    "html-webpack-plugin": "^5.5.0",
+    "webpack": "^5.76.2",
+    "webpack-cli": "^5.0.1",
+    "webpack-dev-server": "^4.12.0"
   },
   "dependencies": {
     "@babel/core": "^7.1.2",
@@ -61,13 +63,13 @@
     "@babel/preset-env": "^7.1.0",
     "@babel/preset-flow": "^7.0.0",
     "@babel/preset-react": "^7.0.0",
+    "@babel/preset-typescript": "^7.12.7",
     "@babel/register": "^7.0.0",
     "airspeed": "^1.0.4",
     "babel-core": "7.0.0-bridge.0",
     "babel-eslint": "^8.2.6",
     "babel-jest": "^29.5.0",
     "babel-loader": "^8.0.4",
-    "@babel/preset-typescript": "^7.12.7",
     "babel-plugin-dev-expression": "^0.2.1",
     "babel-plugin-transform-react-remove-prop-types": "^0.4.19",
     "core-js": "^3.29.1",
