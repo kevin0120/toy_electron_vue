@@ -8,6 +8,12 @@ module.exports = {
         path: path.join(__dirname, './dist'),
         filename: "main.js"
     },
+    resolve: {
+        alias: {
+            '@': path.join(__dirname, './src/')
+        }
+
+    },
     module: {
         rules: [
             {
