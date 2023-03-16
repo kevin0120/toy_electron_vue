@@ -17,8 +17,8 @@
     "start": "cross-env NODE_ENV=development Project_Entrance=pure electron -r @babel/register ./main.js",
     "package": "electron-forge package",
     "make": "electron-forge make",
-    "test:webpack": "webpack-dev-server  --config ./test_webpack/webpack.config.js && node ./test_webpack/dist/main.js",
-    "test:babel": "node -r @babel/register  ./test_webpack/src/index.js"
+    "test:webpack": "webpack --config ./test_webpack/webpack.config.js && webpack-dev-server  --config ./test_webpack/webpack.config.js",
+    "test:babel": "node -r @babel/register  test_webpack/entry/index.js"
   },
   "repository": " https://github.com/kevin0120/toy_electron_vue.git",
   "keywords": [
@@ -77,6 +77,7 @@
     "electron-settings": "^3.2.0",
     "electron-squirrel-startup": "^1.0.0",
     "fs-extra": "^11.1.0",
+    "react-dom": "^18.2.0",
     "react-hot-loader": "^4.13.1",
     "vite": "^4.1.4",
     "winston": "^3.8.2"

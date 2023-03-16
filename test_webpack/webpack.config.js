@@ -3,14 +3,17 @@ const HtmlWebpackPlugin = require("html-webpack-plugin");
 
 module.exports = {
     mode: 'development',
-    entry: "./test_webpack/src/index.js",
+    entry: {
+        index: "./test_webpack/entry/index.js",
+        demo: "./test_webpack/entry/demo.js",
+    },
     output: {
         path: path.join(__dirname, './dist'),
-        filename: "main.js"
+        filename: "[name].js"
     },
     resolve: {
         alias: {
-            '@': path.join(__dirname, './src/')
+            '@': path.join(__dirname, './demos/')
         }
 
     },
@@ -25,22 +28,29 @@ module.exports = {
                         cacheDirectory: true
                     }
                 }
-            }
+            },
+            // {
+            //     test: /\.jsx?$/,
+            //     exclude: /node_modules/,
+            //     use: {
+            //         loader: 'babel-loader',
+            //         options: {
+            //             presets: ['es2015', 'react']
+            //         }
+            //     }
+            // }
 
         ]
     },
     plugins: [
         new HtmlWebpackPlugin({
-            template: './test_webpack/index.html', // 以当前文件为模板创建新的HtML(1. 结构和原来一样 2. 会自动引入打包的资源)
+            template: './test_webpack/entry/index.html', // 以当前文件为模板创建新的HtML(1. 结构和原来一样 2. 会自动引入打包的资源)
         }),
     ],
     devServer: {
-        static: {
-            directory: path.join(__dirname, 'dist'),
-        },
         proxy: {
             '/api': {
-                target: 'http://localhost:3000',
+                target: 'http://211.254.254.251:3000',
                 pathRewrite: { '^/api': '' },
             },
             "/websocket": {
@@ -52,15 +62,13 @@ module.exports = {
                 }
             },
         },
+        static: {
+            directory: path.join(__dirname, 'dist'),
+        },
         // contentBase: resolve(__dirname, 'dist'), // 运行项目的目录
         open: true, // 自动打开浏览器
         compress: true, // 启动gzip压缩
         port: "auto", // 端口号
         hot: true // 开启热模替换功能 HMR
     }
-
-
-
-
-
 };
