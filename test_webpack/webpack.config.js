@@ -1,12 +1,14 @@
 const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const webpack = require("webpack");
+const {VueLoaderPlugin} = require("vue-loader");
 
 module.exports = {
   mode: "development",
   entry: {
-    index: "./test_webpack/entry/index.js",
-    demo: "./test_webpack/entry/demo.js",
+    // index: "./test_webpack/entry/index.js",
+    // demo: "./test_webpack/entry/demo.js",
+    vue: "./test_webpack/entry/vue.js",
   },
   output: {
     path: path.join(__dirname, "./dist"),
@@ -15,6 +17,7 @@ module.exports = {
   resolve: {
     alias: {
       "@": path.join(__dirname, "./demos"),
+      "V@": path.join(__dirname, "./res"),
     },
   },
   module: {
@@ -39,6 +42,23 @@ module.exports = {
           },
         },
       },
+
+      {
+        test: /.vue$/,
+        loader: "vue-loader",
+      },
+
+      {
+        test: /.svg$/,
+        use: {
+          loader: "svg-sprite-loader",
+          options: {
+            symbolId: 'icon-[name]',
+          },
+
+        },
+      },
+
       {
         test: /\.css$/,
         use: ["style-loader", "css-loader"],
@@ -46,7 +66,7 @@ module.exports = {
 
       // webpack5已经升级
       {
-        test: /\.(png|jpg)$/,
+        test: /\.(png|jpg|gif)$/,
         type: "asset/resource",
       },
     ],
@@ -60,6 +80,9 @@ module.exports = {
       NODE_ENV: "development", // use 'development' unless process.env.NODE_ENV is defined
       DEBUG: true,
     }),
+
+      // 与vue-loader结合使用
+    new VueLoaderPlugin(),
   ],
   devServer: {
     proxy: {

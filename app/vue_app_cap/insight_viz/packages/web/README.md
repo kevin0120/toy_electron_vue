@@ -93,7 +93,7 @@ pnpm coverage
 │  ├──utils                               #通用工具函数
 │  ├──views                               #页面
 │  ├──App.vue                             #vue根组件
-│  └──main.ts                             #入口文件
+│  └──main.js                             #入口文件
 ├──.env                                 #全局环境变量
 ├──.env.development                     #开发环境环境变量
 ├──.env.production                      #生产环境环境变量
