@@ -23,7 +23,7 @@ module.exports = defineConfig({
         // 模板会被推导为 `public/subpage.html`
         // 并且如果找不到的话，就回退到 `public/index.html`。
         // 输出文件名会被推导为 `subpage.html`。
-        // subpage: 'src/subpage/main.js'
+        subpage: 'src/subpage/main.js'
     },
     configureWebpack: {
         resolve: {
@@ -34,8 +34,6 @@ module.exports = defineConfig({
             },
             alias: {
                 '@': path.join(__dirname, './src/'),
-                'V@': path.join(__dirname, './src/index/res/'),
-
             }
 
         },
@@ -48,7 +46,7 @@ module.exports = defineConfig({
             .rule('svg-sprite-loader')
             .test(/\.svg$/)
             .include
-            .add(path.resolve('./src/index/res/svg')) //处理svg目录
+            .add(path.resolve('./src/res/svg')) //处理svg目录
             .end()
             .use('svg-sprite-loader')
             .loader('svg-sprite-loader')
