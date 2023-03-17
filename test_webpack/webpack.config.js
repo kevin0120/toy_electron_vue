@@ -6,8 +6,8 @@ const {VueLoaderPlugin} = require("vue-loader");
 module.exports = {
   mode: "development",
   entry: {
-    // index: "./test_webpack/entry/index.js",
-    // demo: "./test_webpack/entry/demo.js",
+    index: "./test_webpack/entry/index.js",
+    demo: "./test_webpack/entry/demo.js",
     vue: "./test_webpack/entry/vue.js",
   },
   output: {

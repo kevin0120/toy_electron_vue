@@ -13,11 +13,16 @@
       <p>Here's some contact info</p>
     </template>
   </HelloWorld>
-  <svg-icon icon-class="ActiveKnowHat"/>
+  <div>
+    <svg-icon icon-class="Up"/>
+    <svg-icon icon-class="User"/>
+    <svg-icon icon-class="StaticWait"/>
+  </div>
 </template>
 
 <script>
 import HelloWorld from './components/HelloWorld.vue'
+
 export default {
   name: 'App',
   components: {
