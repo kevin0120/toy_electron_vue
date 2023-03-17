@@ -18,7 +18,8 @@
     "package": "electron-forge package",
     "make": "electron-forge make",
     "test:webpack": "webpack --config ./test_webpack/webpack.config.js && webpack-dev-server  --config ./test_webpack/webpack.config.js",
-    "test:babel": "node -r @babel/register  test_webpack/entry/index.js"
+    "test:babel": "node -r @babel/register  test_webpack/entry/index.js",
+    "prettier": "prettier --write --loglevel warn \"test_webpack/**/*.{js,json,css,less,scss,vue,html,ts,tsx,md}\""
   },
   "repository": " https://github.com/kevin0120/toy_electron_vue.git",
   "keywords": [
@@ -81,6 +82,7 @@
     "electron-squirrel-startup": "^1.0.0",
     "file-loader": "^6.2.0",
     "fs-extra": "^11.1.0",
+    "prettier": "^2.8.4",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-hot-loader": "^4.13.1",
