@@ -7,7 +7,6 @@ router.get('/hello', (req, res) => {
     const now = new Date().toLocaleTimeString()
     res.send(`Hello, Http!  ${now}`);
 });
-
 function ws_handle(data, ws) {
     // 发送消息给客户端
     const now = new Date().toLocaleTimeString()
@@ -15,6 +14,6 @@ function ws_handle(data, ws) {
 }
 
 module.exports = {
-    router_local: router,
-    ws_local: ws_handle
+    router_vue_app_workcenter: router,
+    ws_vue_app_workcenter: ws_handle
 }

@@ -40,10 +40,20 @@
         }
 
         function webSocketGet() {
-            var socket = new WebSocket("ws://127.0.0.1:7000/ws");
+            const socket = new WebSocket("ws://127.0.0.1:7000/ws");
             socket.onmessage = function (event) {
                 document.getElementById("websocket-response").innerHTML += (event.data + '<br>');
             }
+
+            // 监听连接打开的事件
+            socket.addEventListener('open', (event) => {
+                // 发送数据
+                const data = {
+                    type: 'local',
+                    data: 'hello local'
+                };
+                socket.send(JSON.stringify(data));
+            });
         }
     </script>
 </head>
