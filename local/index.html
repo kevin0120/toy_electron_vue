@@ -21,7 +21,7 @@
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <script>
         const axios_ins = axios.create({
-            baseURL: 'http://127.0.0.1:7000/api',
+            baseURL: 'http://127.0.0.1:7000/local',
             timeout: 2000 // 请求超时时间
         })
 
@@ -32,7 +32,7 @@
                 method: "get",
             })
                 .then(function (response) {
-                    document.getElementById("http-response").innerHTML += response.data + ('\n');
+                    document.getElementById("http-response").innerHTML += (response.data + '<br>');
                 })
                 .catch(function (error) {
                     console.log(error);
@@ -42,7 +42,7 @@
         function webSocketGet() {
             var socket = new WebSocket("ws://127.0.0.1:7000/ws");
             socket.onmessage = function (event) {
-                document.getElementById("websocket-response").innerHTML += event.data + ('\n');
+                document.getElementById("websocket-response").innerHTML += (event.data + '<br>');
             }
         }
     </script>

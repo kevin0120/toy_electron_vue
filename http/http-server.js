@@ -5,11 +5,12 @@ const WebSocket = require('ws');
 // 创建 Express 应用程序对象
 const app = express();
 
-// 创建 HTTP 服务器
-const server = http.createServer(app);
+const router_local = require('./local');
+app.use('/local', router_local);
 
-// 创建 WebSocket 服务器
-const wss = new WebSocket.Server({server});
+const router_vue_app = require('./vue_app');
+app.use('/vue_app', router_vue_app);
+
 
 
 app.use((req, res, next) =>{
@@ -17,19 +18,21 @@ app.use((req, res, next) =>{
     res.setHeader('Access-Control-Allow-Origin', '*');
     res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
     res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type');
+
     next()
 })
 
-// 处理 GET /hello 请求
-app.get('/api/hello', (req, res) => {
-    res.send('Hello, World!');
-});
 
+
+// 创建 HTTP 服务器
+const server = http.createServer(app);
+// 创建 WebSocket 服务器
+const wss = new WebSocket.Server({server});
 // 监听 WebSocket 连接事件
 wss.on('connection', (ws) => {
     console.log('WebSocket connected');
-    now = new Date().toLocaleTimeString()
-    ws.send(`hello websocket ${now}`)
+    const now = new Date().toLocaleTimeString()
+    ws.send(`Hello websocket ${now}`)
     // 监听 WebSocket 消息事件
     ws.on('message', (data) => {
         console.log(`Received message: ${data}`);
@@ -38,6 +41,10 @@ wss.on('connection', (ws) => {
         ws.send(`You said: ${data}`);
     });
 });
+
+
+
+
 
 // 启动 HTTP 服务器和 WebSocket 服务器
 server.listen(7000, () => {
