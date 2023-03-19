@@ -1,12 +1,14 @@
 // Modules to control application life and create native browser window
-const {app, BrowserWindow, ipcMain, dialog,Menu} = require('electron')
+const {app, BrowserWindow, ipcMain, dialog, Menu} = require('electron')
 const path = require('path')
 // const {loadEnv} = require('vite');
 //
 // const localEnv = loadEnv(process.env.Project_Entrance, './', '')
-// const configs = require("./shared/config");
-import configs from "./shared/config";
-const url = require("url");
+const configs = require("./shared/config");
+
+const {fork} = require('child_process')
+const httpServer = fork('./http/http-server.js')
+// import configs from "./shared/config";
 let project = {}
 if (!process.env.Project_Entrance) {
     project = configs.projects[configs.project]
@@ -85,14 +87,15 @@ function createWindow() {
 // initialization and is ready to create browser windows.
 // Some APIs can only be used after this event occurs.
 
-function handleSetTitle (event, title) {
+function handleSetTitle(event, title) {
     const webContents = event.sender
     const win = BrowserWindow.fromWebContents(webContents)
     // console.log(win,title)
     win.setTitle(title)
 }
+
 async function handleFileOpen() {
-    const { canceled, filePaths } = await dialog.showOpenDialog()
+    const {canceled, filePaths} = await dialog.showOpenDialog()
     if (canceled) {
         return
     } else {
@@ -133,6 +136,7 @@ app.on('ready', function () {
 // for applications and their menu bar to stay active until the user quits
 // explicitly with Cmd + Q.
 app.on('window-all-closed', function () {
+    httpServer.kill();
     if (process.platform !== 'darwin') app.quit()
 })
 
