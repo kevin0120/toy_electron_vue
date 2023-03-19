@@ -3,18 +3,48 @@
 <head>
     <meta charset="UTF-8">
     <!-- https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP -->
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self' data: gap: https://ssl.gstatic.com 'unsafe-eval'; style-src 'self' 'unsafe-inline'; media-src *;script-src * 'unsafe-inline'">
+    <!--    <meta http-equiv="Content-Security-Policy" content="default-src 'self' data: gap: https://ssl.gstatic.com 'unsafe-eval'; style-src 'self' 'unsafe-inline'; media-src *;script-src * 'unsafe-inline'">-->
 
-<!--    -->
-<!--    <meta http-equiv="Content-Security-Policy"-->
-<!--          content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'">-->
+    <!--    -->
+    <!--    <meta http-equiv="Content-Security-Policy"-->
+    <!--          content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'">-->
     <link href="styles.css" rel="stylesheet">
     <title>local Hello World!</title>
 
     <script>
-        (function() {
-            console.log('html内部全局变量process',process)
+        (function () {
+            console.log('html内部全局变量process', process)
         }());
+    </script>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script>
+        const axios_ins = axios.create({
+            baseURL: 'http://127.0.0.1:7000/api',
+            timeout: 2000 // 请求超时时间
+        })
+
+
+        function httpGet() {
+            axios_ins({
+                url: `hello`,
+                method: "get",
+            })
+                .then(function (response) {
+                    document.getElementById("http-response").innerHTML += response.data + ('\n');
+                })
+                .catch(function (error) {
+                    console.log(error);
+                });
+        }
+
+        function webSocketGet() {
+            var socket = new WebSocket("ws://127.0.0.1:7000/ws");
+            socket.onmessage = function (event) {
+                document.getElementById("websocket-response").innerHTML += event.data + ('\n');
+            }
+        }
     </script>
 </head>
 <body>
@@ -31,6 +61,20 @@ Title: <input id="title"/>
 File path: <strong id="filePath"></strong>
 <br>
 Current value: <strong id="counter">0</strong>
+
+
+<br>
+
+<button onclick="httpGet()">Send HTTP Request</button>
+<button onclick="webSocketGet()">Send WebSocket Request</button>
+<br><br>
+<div id="http-response"></div>
+<div id="websocket-response"></div>
+
+
 <script src="./renderer.js"></script>
+
 </body>
 </html>
+
+>
