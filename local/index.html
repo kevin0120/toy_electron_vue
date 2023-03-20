@@ -40,7 +40,7 @@
         }
 
         function webSocketGet() {
-            const socket = new WebSocket("ws://127.0.0.1:7000/ws");
+            const socket = new WebSocket("ws://127.0.0.1:7000/local/ws/hello?h=1&g=2&ff=3");
             socket.onmessage = function (event) {
                 document.getElementById("websocket-response").innerHTML += (event.data + '<br>');
             }

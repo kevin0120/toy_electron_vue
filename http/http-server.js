@@ -27,24 +27,25 @@ const server = http.createServer(app);
 // 创建 WebSocket 服务器
 const wss = new WebSocket.Server({server});
 // 监听 WebSocket 连接事件
-wss.on('connection', (ws) => {
+wss.on('connection', (ws, req) => {
     console.log('WebSocket connected');
-    // 监听 WebSocket 消息事件
-    ws.on('message', (message) => {
-        console.log(`Received message: ${message}`);
 
-        const data = JSON.parse(message);
-        switch (data.type) {
-            case 'local':
-                ws_local(data, ws);
-                break;
-            case 'vue_app_workcenter':
-                ws_vue_app_workcenter(data, ws);
-                break;
-            default:
-                console.log(`Unknown message type: ${data.type}`);
-        }
-    });
+    const urlParts1 = req.url.split('?')
+    const queryParams = new URLSearchParams(urlParts1[1])
+    const urlParts = req.url.split('/')
+    console.log("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@")
+    switch (urlParts[1]){
+        case 'local':
+            ws_local(ws);
+            break;
+        case 'vue_app_workcenter':
+            ws_vue_app_workcenter(ws);
+            break;
+        default:
+            console.log(`Unknown url: ${urlParts[1]}`);
+    }
+    console.log(urlParts1, queryParams, urlParts)
+
 });
 
 // 启动 HTTP 服务器和 WebSocket 服务器
