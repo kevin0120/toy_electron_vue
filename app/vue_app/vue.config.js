@@ -7,7 +7,7 @@ module.exports = defineConfig({
     pages: {
         index: {
             // entry for the page
-            entry: 'src/index/main.js',
+            entry: 'src/main.js',
             // the source template
             template: 'public/index.html',
             // output as dist/index.html
@@ -19,11 +19,11 @@ module.exports = defineConfig({
             // extracted common chunks and vendor chunks.
             chunks: ['chunk-vendors', 'chunk-common', 'index']
         },
-        // 当使用只有入口的字符串格式时，
-        // 模板会被推导为 `public/subpage.html`
-        // 并且如果找不到的话，就回退到 `public/index.html`。
-        // 输出文件名会被推导为 `subpage.html`。
-        subpage: 'src/subpage/main.js'
+        // // 当使用只有入口的字符串格式时，
+        // // 模板会被推导为 `public/subpage.html`
+        // // 并且如果找不到的话，就回退到 `public/index.html`。
+        // // 输出文件名会被推导为 `subpage.html`。
+        // subpage: 'src/subpage/main.js'
     },
     configureWebpack: {
         resolve: {
