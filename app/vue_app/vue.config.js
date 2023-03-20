@@ -60,8 +60,8 @@ module.exports = defineConfig({
         host: "0.0.0.0",
         port: 8092,
         open: true,
+        historyApiFallback: true, //vue 路由history模式 devServer怎么配置
         proxy: {
-            // 配置反向代理服务器,target是最终要访问的服务器
             "/api": {
                 target: "http://211.254.254.251:9001/v2", //代理的后台地址
                 ws: false,
