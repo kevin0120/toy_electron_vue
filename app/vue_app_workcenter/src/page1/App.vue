@@ -1,5 +1,5 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png">
+  <img alt="Vue logo" src="./logo.png">
   <HelloWorld msg="Welcome to Your Vue.js App">
     <template v-slot:header>
       <h1>Here might be a page title</h1>
@@ -17,7 +17,7 @@
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import HelloWorld from './HelloWorld.vue'
 
 export default {
   name: 'App',

@@ -49,7 +49,7 @@ const config = {
   },
   mini: {
     webpackChain(chain) {
-      chain.plugin('unplugin-vue-components').use(
+      chain.plugin('unplugin-vue-page1').use(
         Components({
           resolvers: [NutUIResolver()]
         })
@@ -79,7 +79,7 @@ const config = {
   },
   h5: {
     webpackChain(chain) {
-      chain.plugin('unplugin-vue-components').use(
+      chain.plugin('unplugin-vue-page1').use(
         Components({
           resolvers: [NutUIResolver()]
         })
