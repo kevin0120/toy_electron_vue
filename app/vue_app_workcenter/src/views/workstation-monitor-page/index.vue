@@ -83,15 +83,15 @@
   import TabView from 'primevue/tabview';
   import TabPanel from 'primevue/tabpanel';
   import Steps from 'primevue/steps';
-  import AppLayout from '../layout/AppLayout.vue';
-  import LinesChart from '../components/Charts/LineChart.vue';
-  import CurveInfoList from '../views/components/CurveInfoList.vue';
-  import AnalysisCardList from '../views/components/AnalysisCardList.vue';
-  import CurveResultGaugeChart from '../views/components/CurveResultGaugeChart.vue';
-  import WorkerAnalyse from '../views/components/WorkerAnalyse.vue';
-  import BubbleModal from '../components/Modal/BubbleModal.vue';
+  import AppLayout from '/@/layout/AppLayout.vue';
+  import LinesChart from '/@/components/Charts/LineChart.vue';
+  import CurveInfoList from '/@/views/components/CurveInfoList.vue';
+  import AnalysisCardList from '/@/views/components/AnalysisCardList.vue';
+  import CurveResultGaugeChart from '/@/views/components/CurveResultGaugeChart.vue';
+  import WorkerAnalyse from '/@/views/components/WorkerAnalyse.vue';
+  import BubbleModal from '/@/components/Modal/BubbleModal.vue';
   import { useRouter } from 'vue-router';
-  import { useCurveDataWS } from './hooks/workstationMonitor';
+  import { useCurveDataWS } from '/@/views/workstation-monitor-page/hooks/workstationMonitor';
   const router = useRouter();
   const title = String(router.currentRoute.value.params.title || '');
   const { analysisCurveResult, colors, activeTabIdx, chartLabel, chartList, showModal, domRef, mouseWheel } =

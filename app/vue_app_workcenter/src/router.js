@@ -1,6 +1,6 @@
 import {createRouter, createWebHistory} from 'vue-router'
-// import Page1 from './index/App.vue'
-// import Page2 from './subpage/App.vue'
+// import Page1 from './index/Example.vue'
+// import Page2 from './subpage/Example.vue'
 import nprogress from 'nprogress'; // @types/nprogress
 const Page1=() => import ('./page1/App.vue')
 const Page2=() => import ('./workstation-monitor-page/index.vue')
