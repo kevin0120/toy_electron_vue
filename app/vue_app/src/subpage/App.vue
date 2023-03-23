@@ -257,7 +257,7 @@ export default {
 
 .about {
   display: flex;
-  justify-content: center;
+  justify-content: space-around;
   align-items: center;
   flex-wrap: wrap;
 }

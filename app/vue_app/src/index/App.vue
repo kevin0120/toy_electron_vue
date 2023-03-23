@@ -1,10 +1,7 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png">
   <div>
     <svg-loader class="alarm-icon" icon="StaticWhiteAlarm" size="3rem"></svg-loader>
     <svg-loader class="pfIcon" icon="RightOne" size="2.5rem"></svg-loader>
-    <svg-loader class="alarm-icon" icon="ActiveFile" size="3rem"></svg-loader>
-    <svg-loader class="pfIcon" icon="ActiveFileList" size="2.5rem"></svg-loader>
   </div>
 
   <HelloWorld />

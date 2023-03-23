@@ -33,12 +33,10 @@ const Component = {
 
     addItem(s) {
       console.log(s)
-      console.log("111111111111")
     },
 
     closeItem(s) {
       console.log(s)
-      console.log("22222222222222")
     },
 
   },

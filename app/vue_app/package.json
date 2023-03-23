@@ -41,7 +41,11 @@
     "@vue/compiler-sfc": "^3.2.45",
     "copy-files-from-to": "^3.2.0",
     "eslint": "^8.29.0",
-    "eslint-plugin-vue": "^9.8.0"
+    "eslint-plugin-vue": "^9.8.0",
+    "css-loader": "^0.25.0",
+    "file-loader": "^0.9.0",
+    "node-sass": "^4.11.0",
+    "sass-loader": "^5.0.1"
   },
   "eslintConfig": {
     "root": true,

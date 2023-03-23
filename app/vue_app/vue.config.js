@@ -25,6 +25,18 @@ module.exports = defineConfig({
         // // 输出文件名会被推导为 `subpage.html`。
         // subpage: 'src/subpage/main.js'
     },
+
+    // css: {
+    //     loaderOptions: {
+    //         scss: {
+    //             // 这里的选项会传递给 css-loader
+    //         },
+    //         sass: {
+    //             // 这里的选项会传递给 postcss-loader
+    //         }
+    //     }
+    // },
+
     configureWebpack: {
         resolve: {
             fallback: {

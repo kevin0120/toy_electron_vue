@@ -87,7 +87,7 @@ export default {
 
 .icon-route{
   position: relative;
-  top: 11%;
+  top: 0;
 
 }
 
