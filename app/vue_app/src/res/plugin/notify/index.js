@@ -1,12 +1,14 @@
-import Notifications from "./notify/Notifications";
+import Notifications from "./Notifications";
 import mitt from 'mitt';
 
 const emitter = mitt();
 // "repository": {
 //      "url": "https://github.com/euvl/vue-notification.git"
 // },
+
 export default {
     install: (app, options) => {
+
         app.config.globalProperties.$vue_notify_bus = emitter;
         app.component(options.componentName || 'notifications', Notifications)
         const notify = (params) => {
@@ -24,4 +26,4 @@ export default {
 
         app.config.globalProperties.$notify = notify
     }
-}
+};

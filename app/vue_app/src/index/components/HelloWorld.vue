@@ -8,60 +8,57 @@
          target="issues">Github</a>
     </h2>
     <!-- CSS animation example -->
-    <notifications/>
-    <notifications/>
+    <notifications group="foo-css"
+                   position="bottom left"
+                   :speed="500" />
 
+    <!-- Velocity animation example -->
+    <notifications group="foo-velocity"
+                   position="bottom right"
+                   animation-type="velocity"
+                   :speed="500" />
 
-    <notifications/>
-    <notifications/>    <notifications/>
+    <!-- Custom style example -->
+    <notifications group="custom-style"
+                   position="top center"
+                   classes="n-light"
+                   :max="3"
+                   :width="400"/>
 
-<!--    &lt;!&ndash; Velocity animation example &ndash;&gt;-->
-<!--    <Notifications group="foo-velocity"-->
-<!--                   position="bottom right"-->
-<!--                   animation-type="velocity"-->
-<!--                   :speed="500" />-->
+    <!-- Custom template example -->
+    <notifications group="custom-template"
+                   :duration="5000"
+                   :width="500"
+                   animation-name="v-fade-left"
+                   position="top left">
 
-<!--    &lt;!&ndash; Custom style example &ndash;&gt;-->
-<!--    <Notifications group="custom-style"-->
-<!--                   position="top center"-->
-<!--                   classes="n-light"-->
-<!--                   :max="3"-->
-<!--                   :width="400"/>-->
+      <template #body="props">
+        <div class="custom-template">
+          <div class="custom-template-icon">
+            <i class="icon ion-android-checkmark-circle"></i>
+          </div>
+          <div class="custom-template-content">
+            <div class="custom-template-title">
+              {{props.item.title}}
 
-<!--    &lt;!&ndash; Custom template example &ndash;&gt;-->
-<!--    <Notifications group="custom-template"-->
-<!--                   :duration="5000"-->
-<!--                   :width="500"-->
-<!--                   animation-name="v-fade-left"-->
-<!--                   position="top left">-->
+              <p>
+                Random number: {{props.item.data.randomNumber}}
+              </p>
+            </div>
+            <div class="custom-template-text"
+                 v-html="props.item.text"></div>
+          </div>
+          <div class="custom-template-close"
+               @click="props.close">
+            <i class="icon ion-android-close"></i>
+          </div>
+        </div>
+      </template>
+    </notifications>
 
-<!--      <template #body="props">-->
-<!--        <div class="custom-template">-->
-<!--          <div class="custom-template-icon">-->
-<!--            <i class="icon ion-android-checkmark-circle"></i>-->
-<!--          </div>-->
-<!--          <div class="custom-template-content">-->
-<!--            <div class="custom-template-title">-->
-<!--              {{props.item.title}}-->
-
-<!--              <p>-->
-<!--                Random number: {{props.item.data.randomNumber}}-->
-<!--              </p>-->
-<!--            </div>-->
-<!--            <div class="custom-template-text"-->
-<!--                 v-html="props.item.text"></div>-->
-<!--          </div>-->
-<!--          <div class="custom-template-close"-->
-<!--               @click="props.close">-->
-<!--            <i class="icon ion-android-close"></i>-->
-<!--          </div>-->
-<!--        </div>-->
-<!--      </template>-->
-<!--    </Notifications>-->
-
-<!--    &lt;!&ndash; Full width example &ndash;&gt;-->
-<!--    <Notifications group="full-width"-->
-<!--                   width="100%" />-->
+    <!-- Full width example -->
+    <notifications group="full-width"
+                   width="100%" />
 
     <div class="content">
       <p>

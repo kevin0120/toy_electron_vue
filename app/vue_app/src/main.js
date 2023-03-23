@@ -4,6 +4,7 @@ import svgloader from './res/icon_font'
 import router from './router'
 import notifiyplugin from './res/plugin/notify'
 
+
 const app = createApp(App)
 app.use(router)
 app.use(svgloader)

@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div style="width: 10%">
     <svg-loader class="alarm-icon" :icon="icon" size="3rem"></svg-loader>
     <br>
     <span>{{icon}}</span>
@@ -17,6 +17,8 @@ export default {
     return {
     }
   },
+
+
 }
 </script>
 
