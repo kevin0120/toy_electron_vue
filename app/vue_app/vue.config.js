@@ -52,7 +52,13 @@ module.exports = defineConfig({
             .loader('svg-sprite-loader')
             .options({
                 symbolId: 'icon-[name]'
-            })
+            });
+        //
+        // config.module
+        //     .rule('sass-loader')
+        //     .test(/\.vue$/)
+        //     .use('sass-loader')
+        //     .loader('sass-loader');
     },
 
     //配置跨域

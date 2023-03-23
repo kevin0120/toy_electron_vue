@@ -3,41 +3,43 @@
   <nav>
     <ul>
       <li>
-        <router-link to="/page1">Index</router-link>
+        <router-link class="icon-route" to="/page1">
+          <IconTextButton module="CALIBRATION" :permission="1" iconName="ActiveCursor" text="Index"
+                          iconSize='0.1rem' interval="-0.2rem" fontSize="1.375rem"></IconTextButton>
+        </router-link>
       </li>
       <li>
-        <router-link to="/page2">Subpage</router-link>
+        <router-link class="icon-route" to="/page2">
+          <IconTextButton module="CALIBRATION" :permission="1" iconName="ActiveIO" text="图标"
+                          iconSize="1.5rem" interval="-0.2rem" fontSize="1.375rem"></IconTextButton>
+        </router-link>
       </li>
+      <li>
+        <router-link class="icon-route" to="/page3">
+          <IconTextButton module="CALIBRATION" :permission="1" iconName="ActiveLine" text="Example"
+                          iconSize="1.5rem" interval="-0.2rem" fontSize="1.375rem"></IconTextButton>
+        </router-link>
+      </li>
+
     </ul>
   </nav>
   <div id="app_frame" v-if="true">
     <!--    <LeetxHead v-if="true"></LeetxHead>-->
     <div class="content-box">
       <router-view v-slot="{ Component }">
-        <keep-alive>
-          <component :is="Component" :key="$route.name" v-if="$route.meta.keepAlive"/>
-        </keep-alive>
-        <component :is="Component" :key="$route.name" v-if="!$route.meta.keepAlive"/>
-<!--        <h1 v-if="$route.meta.keepAlive">!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!</h1>-->
-<!--        <h1 v-if="!$route.meta.keepAlive">@@@@@@@@@@@@@@@@@@@@@@@@@@</h1>-->
+        <component :is="Component" :key="$route.name"/>
       </router-view>
     </div>
-    <!--    <LeetxFooter></LeetxFooter>-->
-    <!--    <StackMask></StackMask>-->
-    <!--    <MessageTips></MessageTips>-->
   </div>
 </template>
 
 
 <script>
-// import LeetxHead from "./screwdriver/nav/LeetxHead.vue";
-// import LeetxFooter from './screwdriver/nav/LeetxFooter.vue';
-
+import IconTextButton from './res/controls/IconTextButton.vue'
 export default {
   name: "App",
   components: {
-    // LeetxHead,
-    // LeetxFooter,
+    IconTextButton
   },
   data() {
     return {
@@ -82,6 +84,13 @@ export default {
 </script>
 
 <style>
+
+.icon-route{
+  position: relative;
+  top: 11%;
+
+}
+
 nav {
   display: flex;
   justify-content: space-between;
@@ -89,7 +98,7 @@ nav {
   background-color: grey;
   color: #fff;
   padding: 5px;
-  height: 20px;
+  height: 100px;
 }
 
 ul {

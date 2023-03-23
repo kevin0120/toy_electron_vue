@@ -7,16 +7,32 @@
     <svg-loader class="pfIcon" icon="ActiveFileList" size="2.5rem"></svg-loader>
   </div>
 
-  <HelloWorld />
+  <HelloWorld msg="Welcome to Your Vue.js App">
+    <template v-slot:header>
+      <h1>Here might be a page title</h1>
+    </template>
+
+    <template v-slot:default>
+      <p>A paragraph for the main content.</p>
+      <p>And another one.</p>
+    </template>
+
+    <template v-slot:footer>
+      <p>Here's some contact info</p>
+    </template>
+  </HelloWorld>
+
+  <Example/>
 </template>
 
 <script>
 import HelloWorld from './components/HelloWorld.vue'
-
+import Example from './components/Example.vue'
 export default {
   name: 'App',
   components: {
-    HelloWorld
+    HelloWorld,
+    Example
   },
 }
 </script>

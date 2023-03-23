@@ -34,13 +34,13 @@ export default {
       return `#icon-${this.icon}`;
     },
     _height(){
-      if(this.h=='0'){
+      if(this.h==='0'){
         return this.size
       }
       return this.h;
     },
     _weight(){
-      if(this.w=='0'){
+      if(this.w==='0'){
         return this.size
       }
       return this.w;
@@ -58,8 +58,8 @@ export default {
 
 <style scoped>
 .icon-defalut {
-  width: v-bind(_weight);
-  height: v-bind(_height);
+  width: 3rem;
+  height: 3rem;
   fill: currentColor;
   overflow: hidden;
   display: flexbox;

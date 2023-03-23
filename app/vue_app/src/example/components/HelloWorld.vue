@@ -18,9 +18,6 @@
 </template>
 
 <script>
-
-
-
 export default {
   name: 'HelloWorld',
   // 1.props.定义一个组件从父组件那里获得的属性
