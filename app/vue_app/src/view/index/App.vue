@@ -3,17 +3,15 @@
     <svg-loader class="alarm-icon" icon="StaticWhiteAlarm" size="3rem"></svg-loader>
     <svg-loader class="pfIcon" icon="RightOne" size="2.5rem"></svg-loader>
   </div>
-
   <HelloWorld />
 </template>
 
 <script>
 import HelloWorld from './components/HelloWorld.vue'
-
 export default {
   name: 'App',
   components: {
-    HelloWorld
+    HelloWorld,
   },
 }
 </script>

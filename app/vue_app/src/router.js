@@ -1,10 +1,10 @@
-import {createRouter, createWebHistory} from 'vue-router'
+import {createRouter, createWebHashHistory} from 'vue-router'
 // import Page1 from './index/Example.vue'
 // import Page2 from './subpage/Example.vue'
 import nprogress from 'nprogress'; // @types/nprogress
-const Page1=() => import ('./index/App.vue')
-const Page2=() => import ('./subpage/App.vue')
-const Page3=() => import ('./example/App.vue')
+const Page1=() => import ('./view/index/App.vue')
+const Page2=() => import ('./view/subpage/App.vue')
+const Page3=() => import ('./view/example/App.vue')
 const routes = [
     {
         path: '/',
@@ -37,8 +37,8 @@ const routes = [
     },
 ]
 const router = createRouter({
-    history: createWebHistory(process.env.BASE_URL),
-    // history: createWebHashHistory(process.env.BASE_URL),
+    // history: createWebHistory(process.env.BASE_URL),
+    history: createWebHashHistory(process.env.BASE_URL),
     routes
 })
 

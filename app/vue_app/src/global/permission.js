@@ -1,0 +1,41 @@
+export const Moudles={
+    DEBUG:"DEBUG",
+    SYS_BASE:"SYS_BASE",
+    CALIBRATION:"CALIBRATION",
+    PROFILE:"PROFILE",
+    RESULT:"RESULT",
+    ALARM:"ALARM",
+    AUTH_USER:"AUTH_USER",
+    AUTH_GROUP:"AUTH_GROUP",
+    AUTH_MODULES:"AUTH_MODULES",
+    DEV_BUS:"DEV_BUS",
+    DEV_CONFIG:"DEV_CONFIG",
+}
+
+/**
+调试
+IO监视
+总线监视
+标定
+工艺管理
+报警记录
+权限管理
+文件传输
+总线设置
+基础配置
+控制设置
+数据记录
+ * 
+DEBUG
+DEBUG_IO
+DEBUG_FILEDBUS
+CALIBRATION
+PROFILE
+ALARM
+AUTH_GROUP
+FTP
+DEV_BUS
+DEV_CONFIG
+DEV_CONTROL
+RECORDS
+ */

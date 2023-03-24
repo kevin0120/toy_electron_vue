@@ -14,21 +14,21 @@
     </template>
   </HelloWorld>
   <div>
-    <svg-icon icon-class="Up"/>
-    <svg-icon icon-class="User"/>
-    <svg-icon icon-class="StaticWait"/>
+    <svg-icon icon-class="Up" />
+    <svg-icon icon-class="User" />
+    <svg-icon icon-class="StaticWait" />
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import HelloWorld from "./components/HelloWorld.vue";
 
 export default {
-  name: 'App',
+  name: "App",
   components: {
-    HelloWorld
+    HelloWorld,
   },
-}
+};
 </script>
 
 <style>
