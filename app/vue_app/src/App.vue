@@ -4,21 +4,25 @@
     <ul>
       <li>
         <router-link class="icon-route" to="/page1">
-          <IconTextButton module="CALIBRATION" :permission="1" iconName="ActiveCursor" text="Index"
+          <IconTextButton :permission="1" iconName="ActiveCursor" text="Index"
                           iconSize='0.1rem' interval="-0.2rem" fontSize="1.375rem"></IconTextButton>
         </router-link>
       </li>
       <li>
         <router-link class="icon-route" to="/page2">
-          <IconTextButton module="CALIBRATION" :permission="1" iconName="ActiveIO" text="图标"
+          <IconTextButton  :permission="1" iconName="ActiveIO" text="图标"
                           iconSize="1.5rem" interval="-0.2rem" fontSize="1.375rem"></IconTextButton>
         </router-link>
       </li>
       <li>
         <router-link class="icon-route" to="/page3">
-          <IconTextButton module="CALIBRATION" :permission="1" iconName="ActiveLine" text="Example"
+          <IconTextButton  :permission="1" iconName="ActiveLine" text="Example"
                           iconSize="1.5rem" interval="-0.2rem" fontSize="1.375rem"></IconTextButton>
         </router-link>
+<!--        <router-link class="icon-route" to="/page3">-->
+<!--          <IconTextButton module="CALIBRATION" :permission="1" iconName="ActiveLine" text="Example"-->
+<!--                          iconSize="1.5rem" interval="-0.2rem" fontSize="1.375rem"></IconTextButton>-->
+<!--        </router-link>-->
       </li>
 
     </ul>

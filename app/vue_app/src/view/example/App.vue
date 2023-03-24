@@ -22,7 +22,7 @@
     </template>
   </HelloWorld>
 
-  <Example/>
+  <Example formTitle="Hello Example！！！"/>
 </template>
 
 <script>
@@ -34,6 +34,21 @@ export default {
     HelloWorld,
     Example
   },
+
+  created() {
+    console.log('Example App Component created')
+  },
+  mounted() {
+    console.log('Example App Component mounted')
+  },
+  updated() {
+    console.log('Example App Component updated')
+  },
+  unmounted() {
+    console.log('Example App Component destroyed')
+  },
+
+
 }
 </script>
 

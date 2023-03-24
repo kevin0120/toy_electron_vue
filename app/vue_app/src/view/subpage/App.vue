@@ -213,7 +213,8 @@ export default {
   created() {
     const tmp = require.context("@/res/svg", false, /\.svg$/).keys();
     tmp.forEach((item) => {
-      this.svgkeys.push(item.match(/([%a-zA-Z0-9\-_]+)(\?.*)?/)[0]);
+      // this.svgkeys.push(item.match(/([%a-zA-Z0-9\-_]+)(\?.*)?/)[0]);
+      this.svgkeys.push(item.match(/([%a-zA-Z0-9\-_]+)/)[0]);
     });
   },
   unmounted() {},

@@ -33,16 +33,16 @@ export default {
     }
   },
   created() {
-    console.log('Component created')
+    console.log('Example Component created')
   },
   mounted() {
-    console.log('Component mounted')
+    console.log('Example Component mounted')
   },
   updated() {
-    console.log('Component updated')
+    console.log('Example Component updated')
   },
   unmounted() {
-    console.log('Component destroyed')
+    console.log('Example Component destroyed')
   },
   methods: {
     submitForm() {
