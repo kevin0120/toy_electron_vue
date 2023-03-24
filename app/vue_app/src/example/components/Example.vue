@@ -7,6 +7,10 @@
     <p>Status: {{ status }}</p></div>
 </template>
 <script>
+import { useRouter } from 'vue-router';
+const router = useRouter();
+
+
 
 export default {
   name: 'MySelectForm',
@@ -37,6 +41,7 @@ export default {
   },
   mounted() {
     console.log('Component mounted')
+    console.log(router)
   },
   updated() {
     console.log('Component updated')
