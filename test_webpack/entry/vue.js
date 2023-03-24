@@ -1,7 +1,7 @@
-import {createApp } from "vue";
+import { createApp } from "vue";
 import App from "V@/App.vue";
-import svgicon from 'V@/icon_font/'
+import svgicon from "V@/icon_font/";
 const app = createApp(App);
 
-app.use(svgicon)
+app.use(svgicon);
 app.mount("#example");

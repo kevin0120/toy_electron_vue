@@ -1,7 +1,7 @@
 const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const webpack = require("webpack");
-const {VueLoaderPlugin} = require("vue-loader");
+const { VueLoaderPlugin } = require("vue-loader");
 
 module.exports = {
   mode: "development",
@@ -53,9 +53,8 @@ module.exports = {
         use: {
           loader: "svg-sprite-loader",
           options: {
-            symbolId: 'icon-[name]',
+            symbolId: "icon-[name]",
           },
-
         },
       },
 
@@ -81,7 +80,7 @@ module.exports = {
       DEBUG: true,
     }),
 
-      // 与vue-loader结合使用
+    // 与vue-loader结合使用
     new VueLoaderPlugin(),
   ],
   devServer: {

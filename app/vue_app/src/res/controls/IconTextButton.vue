@@ -45,10 +45,10 @@ export default {
             type: String,
             default: "StaticStartOne"
         },
-        // iconSize: {
-        //     type: String,
-        //     default: "1rem"
-        // },
+        iconSize: {
+            type: String,
+            default: "1rem"
+        },
         fontFamily: {
             type: String,
             default: "--SHSC-M"
@@ -76,9 +76,7 @@ export default {
 
     },
     data() {
-        return {
-          iconSize:"1rem"
-        }
+
     },
     methods: {
         // clickButton(e) {
@@ -132,12 +130,11 @@ export default {
 }
 .base-button-icon {
     position: relative;
-    height: 3rem;
-    width: v-bind(iconSize);
+    height: calc(v-bind(iconSize));
+    width: calc(v-bind(iconSize));
     pointer-events: v-bind(pointerEvent);
     opacity: v-bind(opacity);
 }
-
 .base-button-text {
     color: v-bind(color);
     text-align: center;

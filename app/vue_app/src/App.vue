@@ -5,19 +5,19 @@
       <li>
         <router-link class="icon-route" to="/page1">
           <IconTextButton :permission="1" iconName="ActiveCursor" text="Index"
-                          iconSize='0.1rem' interval="-0.2rem" fontSize="1.375rem"></IconTextButton>
+                          iconSize='2rem' interval="-0.2rem" fontSize="1rem"></IconTextButton>
         </router-link>
       </li>
       <li>
         <router-link class="icon-route" to="/page2">
           <IconTextButton  :permission="1" iconName="ActiveIO" text="图标"
-                          iconSize="1.5rem" interval="-0.2rem" fontSize="1.375rem"></IconTextButton>
+                          iconSize="2rem" interval="-0.2rem" fontSize="1rem"></IconTextButton>
         </router-link>
       </li>
       <li>
         <router-link class="icon-route" to="/page3">
           <IconTextButton  :permission="1" iconName="ActiveLine" text="Example"
-                          iconSize="1.5rem" interval="-0.2rem" fontSize="1.375rem"></IconTextButton>
+                          iconSize="2rem" interval="-0.2rem" fontSize="1rem"></IconTextButton>
         </router-link>
 <!--        <router-link class="icon-route" to="/page3">-->
 <!--          <IconTextButton module="CALIBRATION" :permission="1" iconName="ActiveLine" text="Example"-->
@@ -102,7 +102,7 @@ nav {
   background-color: grey;
   color: #fff;
   padding: 5px;
-  height: 100px;
+  height: 50px;
 }
 
 ul {
