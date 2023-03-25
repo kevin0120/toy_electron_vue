@@ -17,9 +17,6 @@ import './styles/cap-card.css';
 import './styles/common.css';
 import './styles/rewrite-primevue.css';
 
-
-
-
 app.use(svgloader).
 use(notifiyplugin, {
     componentName: 'notifications'
