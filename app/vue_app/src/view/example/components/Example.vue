@@ -36,7 +36,10 @@ export default {
     console.log('Example Component created')
   },
   mounted() {
+
+    console.log("你可以看到如下全局变量")
     console.log(this.$router,this.$route)
+    console.log(this.$store.state)
     console.log('Example Component mounted')
   },
   updated() {

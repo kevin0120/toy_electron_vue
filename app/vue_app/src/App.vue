@@ -28,14 +28,9 @@
       </li>
     </ul>
   </nav>
-  <div id="app_frame" v-if="true">
-    <!--    <LeetxHead v-if="true"></LeetxHead>-->
-    <div class="content-box">
-      <router-view v-slot="{ Component }">
-        <component :is="Component" :key="$route.name"/>
-      </router-view>
-    </div>
-  </div>
+  <router-view v-slot="{ Component }">
+    <component :is="Component" :key="$route.name"/>
+  </router-view>
 </template>
 
 

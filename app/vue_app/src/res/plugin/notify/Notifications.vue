@@ -310,7 +310,6 @@
 
             enter({el, complete}) {
                 const animation = this.getAnimation('enter', el)
-                console.log(complete,el)
                 if (!el) {
                     return
                 }
@@ -321,9 +320,8 @@
                 })
             },
 
-            leave({el, complete}) {
+            leave({el}) {
                 let animation = this.getAnimation('leave', el)
-                console.log(complete,el)
                 if (!el) {
                     return
                 }

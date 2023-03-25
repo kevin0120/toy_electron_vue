@@ -34,7 +34,6 @@ export default {
     HelloWorld,
     Example
   },
-
   created() {
     console.log('Example App Component created')
   },
