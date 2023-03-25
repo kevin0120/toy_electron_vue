@@ -2,8 +2,8 @@ export default {
   position: ['top', 'right'],
   cssAnimation: 'vn-fade',
   velocityAnimation: {
-    enter: () => {
-      var height = '80px'
+    enter: (el) => {
+      var height = el.clientHeight
 
       return {
         height: [height, 0],

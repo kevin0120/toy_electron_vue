@@ -6,12 +6,8 @@
     <button @click="submitForm">Submit</button>
     <p>Status: {{ status }}</p></div>
 </template>
+
 <script>
-import { useRouter } from 'vue-router';
-const router = useRouter();
-
-
-
 export default {
   name: 'MySelectForm',
   props: {formTitle: {type: String, required: true}},
@@ -40,7 +36,7 @@ export default {
     console.log('Example Component created')
   },
   mounted() {
-    console.log(router)
+    console.log(this.$router,this.$route)
     console.log('Example Component mounted')
   },
   updated() {

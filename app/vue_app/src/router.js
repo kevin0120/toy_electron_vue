@@ -3,8 +3,9 @@ import {createRouter, createWebHashHistory} from 'vue-router'
 // import Page2 from './subpage/Example.vue'
 import nprogress from 'nprogress'; // @types/nprogress
 const Page1=() => import ('./view/index/App.vue')
-const Page2=() => import ('./view/subpage/App.vue')
+const Page2=() => import ('./view/svgimage/App.vue')
 const Page3=() => import ('./view/example/App.vue')
+const Page4=() => import ('./view/workStationMonitor/App.vue')
 const routes = [
     {
         path: '/',
@@ -34,6 +35,15 @@ const routes = [
             title:  'Page3',
         },
         component: Page3
+    },
+
+    {
+        path: '/cap/monitor/:scope/:title?',
+        name: 'workstationMonitor',
+        meta: {
+            title:  '工位监控',
+        },
+        component: Page4
     },
 ]
 const router = createRouter({
