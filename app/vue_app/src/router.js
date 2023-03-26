@@ -6,6 +6,8 @@ const Page1=() => import ('./view/index/App.vue')
 const Page2=() => import ('./view/svgimage/App.vue')
 const Page3=() => import ('./view/example/App.vue')
 const Page4=() => import ('./view/workStationMonitor/App.vue')
+const Page5=() => import ('./view/primevue/App.vue')
+
 const routes = [
     {
         path: '/',
@@ -44,6 +46,15 @@ const routes = [
             title:  '工位监控',
         },
         component: Page4
+    },
+
+    {
+        path: '/primevue',
+        name: 'my primevue',
+        meta: {
+            title:  'primevue 测试',
+        },
+        component: Page5
     },
 ]
 const router = createRouter({

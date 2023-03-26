@@ -1,5 +1,5 @@
 <template>
-
+  <Toast/>
   <nav>
     <ul>
       <li>
@@ -23,6 +23,13 @@
       <li>
         <router-link class="icon-route" to="/cap/monitor/helloMonitor/OP110">
           <IconTextButton :permission="1" iconName="ActiveAdd" text="工位监控"
+                          iconSize="2rem" interval="-0.2rem" fontSize="1rem"></IconTextButton>
+        </router-link>
+      </li>
+
+      <li>
+        <router-link class="icon-route" to="/primevue">
+          <IconTextButton :permission="1" iconName="ActiveBanlance" text="primevue 测试"
                           iconSize="2rem" interval="-0.2rem" fontSize="1rem"></IconTextButton>
         </router-link>
       </li>

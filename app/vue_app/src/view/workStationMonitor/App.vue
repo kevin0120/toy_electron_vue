@@ -1,41 +1,45 @@
 <template>
-<!--  <img alt="Vue logo" src="./assets/logo.png">-->
-<!--  <div class="col-12" style="height: 70%; padding: 0 0 0.5rem 0">-->
-<!--    <TabView>-->
-<!--      <TabPanel>-->
-<!--        &lt;!&ndash;        <LinesChart&ndash;&gt;-->
-<!--        &lt;!&ndash;            :series="chartList[index]"&ndash;&gt;-->
-<!--        &lt;!&ndash;            :colors="colors"&ndash;&gt;-->
-<!--        &lt;!&ndash;            :axis-name="tab.axisName"&ndash;&gt;-->
-<!--        &lt;!&ndash;            :custom-tool-tip-info-list="[&ndash;&gt;-->
-<!--        &lt;!&ndash;                        [&ndash;&gt;-->
-<!--        &lt;!&ndash;                          { key: '工作中心', value: analysisCurveResult?.workcenter_code },&ndash;&gt;-->
-<!--        &lt;!&ndash;                          { key: '追溯码', value: analysisCurveResult?.track_no },&ndash;&gt;-->
-<!--        &lt;!&ndash;                          { key: '工具序列号', value: analysisCurveResult?.attribute_equipment_no }&ndash;&gt;-->
-<!--        &lt;!&ndash;                        ]&ndash;&gt;-->
-<!--        &lt;!&ndash;                      ]"&ndash;&gt;-->
-<!--        &lt;!&ndash;            h="100%"&ndash;&gt;-->
-<!--        &lt;!&ndash;            w="100%"&ndash;&gt;-->
-<!--        &lt;!&ndash;        />&ndash;&gt;-->
-<!--          hello world-->
-<!--      </TabPanel>-->
-<!--    </TabView>-->
-<!--  </div>-->
+  <AppLayout :home="{ icon: 'pi pi-home', to: '/' }" :model="[{ label: '工位监控', disabled: true }]">
+    <template #AppBody>
+      <div class="grid h-full w-full bg-white p-2" style="min-height: 850px">
+        <AnalysisCardList :curve-info="analysisCurveResult"/>
+
+        <div class="col-12 md:col-12 lg:col-3 xl:col-3 h-calc-10rem">
+          <div class="p-card h-full w-full p-4 grid" style="overflow: auto; border-radius: 16px">
+            <CurveInfoList :curve-info="analysisCurveResult" />
+          </div>
+        </div>
 
 
-    <div>
-      <h1>Car Catalog</h1>
-      <div class="p-inputgroup">
-        <InputText v-model="globalFilter" placeholder="Filter cars..." />
-        <Button label="Search" icon="pi pi-search" />
       </div>
-      <DataTable :value="cars" :globalFilterFields="['vin','year','brand','color']">
-        <Column field="vin" header="Vin"/>
-        <Column field="year" header="Year"/>
-        <Column field="brand" header="Brand"/>
-        <Column field="color" header="Color"/>
-      </DataTable>
-    </div>
+
+
+
+
+
+
+
+
+
+
+      <div>
+        <h1>Car Catalog</h1>
+        <div class="p-inputgroup">
+          <InputText v-model="globalFilter" placeholder="Filter cars..."/>
+          <Button label="Search" icon="pi pi-search"/>
+        </div>
+        <DataTable :value="cars" :globalFilterFields="['vin','year','brand','color']">
+          <Column field="vin" header="Vin"/>
+          <Column field="year" header="Year"/>
+          <Column field="brand" header="Brand"/>
+          <Column field="color" header="Color"/>
+        </DataTable>
+      </div>
+
+    </template>
+
+  </AppLayout>
+
 </template>
 
 <script>
@@ -43,120 +47,74 @@
 // import TabPanel from 'primevue/tabpanel';
 
 import Button from 'primevue/button';
-import  InputText from 'primevue/inputtext';
+import InputText from 'primevue/inputtext';
 import DataTable from 'primevue/datatable';
 import Column from 'primevue/column';
+import AnalysisCardList from './components/AnalysisCardList.vue';
+import AppLayout from './layout/AppLayout.vue';
+import CurveInfoList from './components/CurveInfoList.vue';
 export default {
   name: 'App',
   components: {
-    // TabView,
-    // TabPanel,
+
 // eslint-disable-next-line
     Button,
     InputText,
     DataTable,
-    Column
+    Column,
     // Steps
+    CurveInfoList,
+    AnalysisCardList,
+    AppLayout
   },
   data() {
     return {
       cars: [
-        { vin: 'A123', year: 2021, brand: 'Toyota', color: 'Red' },
-        { vin: 'B456', year: 2022, brand: 'Honda', color: 'Blue' },
-        { vin: 'C789', year: 2023, brand: 'Ford', color: 'Green' }
+        {vin: 'A123', year: 2021, brand: 'Toyota', color: 'Red'},
+        {vin: 'B456', year: 2022, brand: 'Honda', color: 'Blue'},
+        {vin: 'C789', year: 2023, brand: 'Ford', color: 'Green'}
       ],
-      globalFilter: ''
+      globalFilter: '',
+      analysisCurveResult:{
+        curve: {
+          cur_m: [0],
+          cur_w: [0],
+          cur_t: [0],
+          cur_s: [0]
+        },
+        entity_id: '1000000', // 唯一id
+        bolt_name: 'nut001',// 螺栓编号
+        analysis_result_state: 'ok', // 算法分析结果
+        tightening_result: 'ok', // 拧紧结果
+        track_no: 'sn1002', // 追溯码
+        workcenter_code: 'w001', // 工作中心
+        attribute_equipment_no: 'gun001', // 工具序列号
+        control_time: '2012-01-02 07:12:56', // 拧紧时间
+        curve_file: '123.json' | null, // 曲线文件
+        angle_target: 1000,// 目标角度
+        angle_max: 9999, // 最大角度
+        angle_min: 1, // 最小角度
+        torque_target: 10, // 目标扭矩
+        torque_max: 20,// 最大扭矩
+        torque_min: 2,// 最小扭矩
+        measurement_final_torque: 12,
+        measurement_final_angle: 12,
+        measurement_step_results: [{measure_torque: 1, measure_angle: 1}, {
+          measure_torque: 2,
+          measure_angle: 2
+        }, {measure_torque: 3, measure_angle: 3}], // 分段拧紧结果
+        tightening_process_no: '12', // 程序号
+        cap_snug_features_save: null // 贴合点数据json字符串}
+    }
     };
   },
-  methods: {},
-  mounted() {
-    console.log(this.$route)
+  methods:{
   },
-  created() {
-  },
-  unmounted() {
-  },
-
+  props: {},
 }
 </script>
 
-<style lang="scss" scoped>
-//::v-deep(.p-steps) {
-//  .p-steps-item:before {
-//    content: ' ';
-//    border-top: 1px solid #dee2e6;
-//    width: 100%;
-//    top: 50%;
-//    left: 0;
-//    display: block;
-//    position: absolute;
-//    margin-top: -1.5rem;
-//  }
-//
-//  .p-steps-item {
-//    .p-menuitem-link {
-//      .p-steps-number {
-//        color: var(--primary-600);
-//      }
-//    }
-//  }
-//}
-//
-//::v-deep(.p-tabview-nav-container) {
-//  position: relative;
-//  height: 13%;
-//
-//  .p-tabview-nav-content {
-//    overflow-x: auto;
-//    overflow-y: hidden;
-//    scroll-behavior: smooth;
-//    scrollbar-width: none;
-//    -ms-scroll-chaining: contain auto;
-//    overscroll-behavior: contain auto;
-//    height: 100%;
-//
-//    .p-tabview-nav {
-//      background: #ffffff;
-//      border: 1px solid #dee2e6;
-//      border-width: 0 0 2px 0;
-//      border-radius: 16px 16px 0 0;
-//      height: 100%;
-//
-//      .p-tabview-nav-link {
-//        transition: background-color 0.2s, border-color 0.2s, box-shadow 0.2s;
-//        height: 103%;
-//      }
-//    }
-//  }
-//}
-//
-//::v-deep(.p-tabview) {
-//  background: #ffffff;
-//  color: #495057;
-//  box-shadow: 0 2px 1px -1px rgb(0 0 0 / 20%), 0 1px 1px 0 rgb(0 0 0 / 14%), 0 1px 3px 0 rgb(0 0 0 / 12%);
-//  border-radius: 16px;
-//
-//  .p-tabview-nav-link {
-//    padding: 0px 0.5rem 0px 0.5rem !important;
-//  }
-//
-//  .p-tabview-panels {
-//    background: #ffffff;
-//    padding: 0.5rem;
-//    border: 0 none;
-//    color: #495057;
-//    height: 86%;
-//    border-bottom-right-radius: 16px;
-//    border-bottom-left-radius: 16px;
-//
-//    .p-tabview-panel {
-//      height: 100%;
-//    }
-//  }
-//}
-//
-//.chart-tabs {
-//  height: 100%;
-//}
+<style scoped>
+
 </style>
 

@@ -1,4 +1,4 @@
-import type { IPagination, IRes } from '/@/api/types/common';
+import type { IPagination, IRes } from './common';
 import type { t2DArray } from '/@/types/global';
 
 //获取统计分析页面散点图数据 请求参数
