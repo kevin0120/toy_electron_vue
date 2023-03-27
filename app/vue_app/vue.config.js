@@ -39,6 +39,7 @@ module.exports = defineConfig({
 
     configureWebpack: {
         resolve: {
+            extensions: ['.js', '.ts', '.vue', '.json'],
             fallback: {
                 path: false,
                 "crypto": false,
@@ -49,7 +50,16 @@ module.exports = defineConfig({
             }
 
         },
-        devtool : "source-map",
+        // module: {
+        //     rules: [
+        //         {
+        //             test: /\.tsx?$/,
+        //             loader: 'ts-loader',
+        //             options: {appendTsSuffixTo: [/\.vue$/]}
+        //         }
+        //     ]
+        // },
+        devtool: "source-map",
     },
     chainWebpack: config => {
         config.module.rules.delete("svg"); //重点:删除默认配置中处理svg,
@@ -65,12 +75,14 @@ module.exports = defineConfig({
             .options({
                 symbolId: 'icon-[name]'
             });
-        //
         // config.module
-        //     .rule('sass-loader')
-        //     .test(/\.vue$/)
-        //     .use('sass-loader')
-        //     .loader('sass-loader');
+        //     .rule('ts')
+        //     .use('ts-loader')
+        //     .loader('ts-loader')
+        //     .tap(options => {
+        //         options.appendTsSuffixTo = [/\.vue$/]
+        //         return options
+        //     })
     },
 
     //配置跨域

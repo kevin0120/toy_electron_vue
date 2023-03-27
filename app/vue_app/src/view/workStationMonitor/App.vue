@@ -4,6 +4,13 @@
       <div class="grid h-full w-full bg-white p-2" style="min-height: 850px">
         <AnalysisCardList :curve-info="analysisCurveResult"/>
 
+
+
+        <div class="col-12 md:col-12 lg:col-3 xl:col-3 h-calc-10rem">
+          <CurveResultGaugeChart :curve-info="analysisCurveResult" />
+        </div>
+
+
         <div class="col-12 md:col-12 lg:col-3 xl:col-3 h-calc-10rem">
           <div class="p-card h-full w-full p-4 grid" style="overflow: auto; border-radius: 16px">
             <CurveInfoList :curve-info="analysisCurveResult" />
@@ -53,6 +60,9 @@ import Column from 'primevue/column';
 import AnalysisCardList from './components/AnalysisCardList.vue';
 import AppLayout from './layout/AppLayout.vue';
 import CurveInfoList from './components/CurveInfoList.vue';
+import CurveResultGaugeChart from './components/CurveResultGaugeChart.vue';
+
+
 export default {
   name: 'App',
   components: {
@@ -65,7 +75,8 @@ export default {
     // Steps
     CurveInfoList,
     AnalysisCardList,
-    AppLayout
+    AppLayout,
+    CurveResultGaugeChart
   },
   data() {
     return {
