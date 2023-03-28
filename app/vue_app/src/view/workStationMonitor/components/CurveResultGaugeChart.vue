@@ -7,11 +7,12 @@
           <div class="col-4 p-4">单位: {{ CurvesUnitEnum.torque }}</div>
         </div>
         <GaugeChart
-          :max="curveInfo.torque_max"
-          :min="curveInfo.torque_min"
-          :value="curveInfo.measurement_final_torque"
-          h="80%"
-          :color="CurvesColorEnum[curveInfo.tightening_result || 'default']"
+            divRef="GaugeChart1"
+            :max="curveInfo.torque_max"
+            :min="curveInfo.torque_min"
+            :value="curveInfo.measurement_final_torque"
+            h="80%"
+            :color="CurvesColorEnum[curveInfo.tightening_result || 'default']"
         />
       </div>
     </div>
@@ -22,11 +23,12 @@
           <div class="col-4 p-4">单位: {{ CurvesUnitEnum.angle }}</div>
         </div>
         <GaugeChart
-          :max="curveInfo?.angle_max"
-          :min="curveInfo?.angle_min"
-          :value="curveInfo?.measurement_final_angle"
-          h="80%"
-          :color="CurvesColorEnum[curveInfo?.tightening_result]"
+            divRef="GaugeChart2"
+            :max="curveInfo.angle_max"
+            :min="curveInfo.angle_min"
+            :value="curveInfo.measurement_final_angle"
+            h="80%"
+            :color="CurvesColorEnum[curveInfo.tightening_result || 'default']"
         />
       </div>
     </div>
@@ -34,10 +36,9 @@
 </template>
 
 
-
 <script>
 import GaugeChart from './Charts/GaugeChart.vue';
-import { CurvesUnitEnum ,CurvesColorEnum} from '../constant/curves';
+import {CurvesUnitEnum, CurvesColorEnum} from '../constant/curves';
 
 export default {
   name: 'CurveResultGaugeChart',
@@ -47,12 +48,11 @@ export default {
   data() {
     return {
       CurvesColorEnum: CurvesColorEnum,
-      CurvesUnitEnum:CurvesUnitEnum
+      CurvesUnitEnum: CurvesUnitEnum
     }
   },
   props: {
-    curveInfo: {
-    },
+    curveInfo: {},
   },
 
 
@@ -60,9 +60,6 @@ export default {
 
 
 </script>
-
-
-
 
 
 <style scoped></style>

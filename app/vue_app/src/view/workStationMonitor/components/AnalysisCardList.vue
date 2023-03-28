@@ -57,7 +57,7 @@ export default {
   },
 
   mounted() {
-    console.log(this.curveInfo)
+    // console.log(this.curveInfo)
   }
 }
 
