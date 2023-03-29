@@ -13,7 +13,7 @@ module.exports.defaultConfigs = {
             name:'vue_app',
             connect:'./app/vue_app/dist/index.html',
             setFullScreen:true,
-            openDevTools:true,
+            openDevTools:false,
             uuid: '2'
         },
         remote_odoo : {
