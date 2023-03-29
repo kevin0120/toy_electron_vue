@@ -1,5 +1,5 @@
 <template>
-  <div :id="divRef" :style="{ width: width, height: height }"></div>
+  <div  :id="divRef" :style="{ width: width, height: height }"></div>
 </template>
 
 
@@ -8,8 +8,7 @@ import * as echarts from 'echarts';
 import {isMobile} from "@/view/workStationMonitor/utils/navigator";
 import {echartfontSize} from "@/view/workStationMonitor/utils/autoAdaptive";
 // import {tooltipFormatter} from "@/view/workStationMonitor/utils/echarts";
-
-let chart = null;
+// let chart = null;
 const options = {
   tooltip: {
     trigger: 'axis',
@@ -117,6 +116,8 @@ export default {
       width: this.w || '100%',
       height: this.h || '100%',
       enable: true,
+      chart: null,
+      options: options,
     }
   },
   components: {
@@ -128,8 +129,8 @@ export default {
       default: 'divRef',
     },
     series: {
-      type: String,
-      default: 'divRef',
+      type: null,
+      default: [],
     },
     axisName: {
       x: {
@@ -159,47 +160,48 @@ export default {
     },
     w: {
       type: String,
-      default: 'divRef',
+      default: '100%',
     },
     h: {
       type: String,
-      default: 'divRef',
+      default: '100%',
     },
   },
-
+  emits: ['getSeriesName'],
   mounted() {
     if (isMobile()) {
-      options.xAxis.nameTextStyle.fontSize = 12;
-      options.yAxis.nameTextStyle.fontSize = 12;
-      options.toolbox.right = '-2%';
-      options.toolbox.top = '6%';
-      options.grid.top = '20%';
-      options.grid.left = '13%';
-      options.grid.right = '12%';
+      this.options.xAxis.nameTextStyle.fontSize = 12;
+      this.options.yAxis.nameTextStyle.fontSize = 12;
+      this.options.toolbox.right = '-2%';
+      this.options.toolbox.top = '6%';
+      this.options.grid.top = '20%';
+      this.options.grid.left = '13%';
+      this.options.grid.right = '12%';
     }
     if (this.enable) {
-      chart = echarts.init(document.getElementById(this.divRef));
+      this.chart = echarts.init(document.getElementById(this.divRef));
       window.addEventListener('resize', this.resize);
-      chart.on('click', 'series', (params) => {
+      const localemit =this.$emit
+      this.chart.on('click', 'series', (params) => {
         // 点击命中曲线的时候传递曲线名称
-        this.$emit('getSeriesName', params.seriesName);
+        localemit('getSeriesName', params.seriesName);
       });
-      chart.on('highlight', (params) => {
+      this.chart.on('highlight', (params) => {
         // 曲线高亮时触发
         if (params.seriesName) {
-          this.$emit('getSeriesName', params.seriesName);
+          localemit('getSeriesName', params.seriesName);
         }
       });
-      chart.getZr().on('click', function (params) {
+      this.chart.getZr().on('click', function (params) {
         // 点击没有命中曲线的时候传递空字符串
         if (!params.target?.culling) {
-          this.$emit('getSeriesName', '');
+          localemit('getSeriesName', '');
         }
       });
-      options.xAxis.name = this.axisName.x;
-      options.yAxis.name = this.axisName.y;
+      this.options.xAxis.name = this.axisName.x;
+      this.options.yAxis.name = this.axisName.y;
       if (!this.hasSeries.value) {
-        chart.showLoading({
+        this.chart.showLoading({
           text: '暂无图表数据...',
           showSpinner: true,
           textColor: 'black',
@@ -209,18 +211,18 @@ export default {
         });
         return;
       }
-      options.series = this.series;
-      chart.setOption(options);
+      this.options.series = this.series;
+      this.chart.setOption(this.options);
     }
   },
 
 
   unmounted() {
     window.removeEventListener('resize', this.resize);
-    chart.off('click');
-    chart.clear();
-    chart.dispose();
-    chart = null;
+    this.chart.off('click');
+    this.chart.clear();
+    this.chart.dispose();
+    this.chart = null;
   },
 
 
@@ -233,29 +235,29 @@ export default {
 
   methods: {
     resize() {
-      chart.resize();
+      // this.chart.resize();
     }
   },
   watch: {
     colors() {
-      options.series.forEach((e) => {
+      this.options.series.forEach((e) => {
         e.color = this.colors[e.index];
       });
-      chart.setOption(options, true);
+      this.chart.setOption(this.options, true);
     },
     axisName() {
-      options.xAxis.name = this.axisName.x;
-      options.yAxis.name = this.axisName.y;
-      chart.setOption(options, true);
+      this.options.xAxis.name = this.axisName.x;
+      this.options.yAxis.name = this.axisName.y;
+      this.chart.setOption(this.options, true);
     },
     series() {
-      options.series = this.series;
-      chart.hideLoading();
-      chart.setOption(options, true);
+      this.options.series = this.series;
+      this.chart.hideLoading();
+      this.chart.setOption(this.options, true);
     },
     xAxisShow() {
-      options.xAxis.show = this.xAxisShow || false;
-      chart.setOption(options, true);
+      this.options.xAxis.show = this.xAxisShow || false;
+      this.chart.setOption(this.options, true);
     }
   }
 }

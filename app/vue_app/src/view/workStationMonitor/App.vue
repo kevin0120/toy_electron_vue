@@ -7,10 +7,10 @@
         <div class="col-12 md:col-12 lg:col-6 xl:col-6 h-calc-10rem">
           <div class="grid h-full w-full">
             <div class="col-12" style="height: 70%; padding: 0 0 0.5rem 0">
-              <TabView v-model:activeIndex="activeTabIdx" class="chart-tabs" lazy>
+              <TabView class="chart-tabs">
                 <TabPanel v-for="(tab, index) in chartLabel" :key="tab.headerLabel" :header="tab.headerLabel">
                   <LinesChart
-                      divRef="LinesChart2"
+                      :divRef="devname(index)"
                       :series="chartList[index]"
                       :colors="colors"
                       :axis-name="tab.axisName"
@@ -65,18 +65,16 @@
         </div>
 
         <div class="col-12 md:col-12 lg:col-3 xl:col-3 h-calc-10rem">
-          <CurveResultGaugeChart :curve-info="analysisCurveResult" />
+          <CurveResultGaugeChart :curve-info="analysisCurveResult"/>
         </div>
 
         <div class="col-12 md:col-12 lg:col-3 xl:col-3 h-calc-10rem">
           <div class="p-card h-full w-full p-4 grid" style="overflow: auto; border-radius: 16px">
-            <CurveInfoList :curve-info="analysisCurveResult" />
+            <CurveInfoList :curve-info="analysisCurveResult"/>
           </div>
         </div>
 
       </div>
-
-
 
 
       <div>
@@ -96,12 +94,13 @@
     </template>
 
   </AppLayout>
-
+  <BubbleModal :show="showModal" :status="analysisCurveResult?.tightening_result || 'nok'" @close="showModal = false">
+  </BubbleModal>
 </template>
 
 <script>
 // import TabView from 'primevue/tabview';
-// import TabPanel from 'primevue/tabpanel';
+import BubbleModal from './components/BubbleModal';
 
 import Button from 'primevue/button';
 import InputText from 'primevue/inputtext';
@@ -115,6 +114,13 @@ import LinesChart from './components/Charts/LineChart.vue';
 import TabView from 'primevue/tabview';
 import TabPanel from 'primevue/tabpanel';
 import Steps from 'primevue/steps';
+import {randomHexColorList} from "@/view/workStationMonitor/utils/math";
+import {
+  analysisCurveResult1,
+  analysisCurveResult2,
+  a,
+  b
+} from "./index";
 
 export default {
   name: 'App',
@@ -125,7 +131,7 @@ export default {
     InputText,
     DataTable,
     Column,
-
+    BubbleModal,
     CurveInfoList,
     AnalysisCardList,
     AppLayout,
@@ -137,52 +143,129 @@ export default {
   },
   data() {
     return {
+      showModal: false,
+      tag: true,
       cars: [
         {vin: 'A123', year: 2021, brand: 'Toyota', color: 'Red'},
         {vin: 'B456', year: 2022, brand: 'Honda', color: 'Blue'},
         {vin: 'C789', year: 2023, brand: 'Ford', color: 'Green'}
       ],
       globalFilter: '',
-      analysisCurveResult:{
-        curve: {
-          cur_m: [0,1,2,3,4,5,6],
-          cur_w: [0,1,2,3,4,5,6],
-          cur_t: [0,1,2,3,4,5,6],
-          cur_s: [0,1,2,3,4,5,6]
-        },
-        entity_id: '1000000', // 唯一id
-        bolt_name: 'nut001',// 螺栓编号
-        analysis_result_state: 'ok', // 算法分析结果
-        tightening_result: 'ok', // 拧紧结果
-        track_no: 'sn1002', // 追溯码
-        workcenter_code: 'w001', // 工作中心
-        attribute_equipment_no: 'gun001', // 工具序列号
-        control_time: '2012-01-02 07:12:56', // 拧紧时间
-        curve_file: '123.json' | null, // 曲线文件
-        angle_target: 1000,// 目标角度
-        angle_max: 999, // 最大角度
-        angle_min: 100, // 最小角度
-        torque_target: 10, // 目标扭矩
-        torque_max: 99,// 最大扭矩
-        torque_min: 2,// 最小扭矩
-        measurement_final_torque: 50,
-        measurement_final_angle: 220,
-        measurement_step_results: [{measure_torque: 1, measure_angle: 1}, {
-          measure_torque: 2,
-          measure_angle: 2
-        }, {measure_torque: 3, measure_angle: 3}], // 分段拧紧结果
-        tightening_process_no: '12', // 程序号
-        cap_snug_features_save: null // 贴合点数据json字符串}
-    }
+      // activeTabIdx: 1,
+      chartLabel: [{x_label: 'cur_w', y_label: 'cur_m', headerLabel: '角度/扭矩', axisName: {x: '角度', y: '扭矩'}},
+        {x_label: 'cur_t', y_label: 'cur_m', headerLabel: '时间/扭矩', axisName: {x: '时间', y: '扭矩'}},
+        {x_label: 'cur_t', y_label: 'cur_w', headerLabel: '时间/角度', axisName: {x: '时间', y: '角度'}}],
+      colors: randomHexColorList(3),
+      chartList: a,
+      analysisCurveResult: {}
     };
   },
-  methods:{
+  methods: {
+    devname(id) {
+      return 'LinesChart' + id
+
+    }
   },
   props: {},
+  mounted() {
+    this.analysisCurveResult = analysisCurveResult1;
+    this.chartList = a;
+    this.showModal = false;
+
+    setInterval(function () {
+      this.showModal = !this.showModal;
+      console.log(new Date(), this.showModal)
+    }, 3000);
+    setInterval(() => {
+      this.analysisCurveResult = this.tag ? analysisCurveResult1 : analysisCurveResult2;
+      this.chartList = this.tag ? a : b;
+      this.tag = !this.tag;
+      // console.log(new Date(), this.showModal)
+      // this.showModal=true
+    }, 5000)
+  }
+
 }
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
+::v-deep(.p-steps) {
+  .p-steps-item:before {
+    content: ' ';
+    border-top: 1px solid #dee2e6;
+    width: 100%;
+    top: 50%;
+    left: 0;
+    display: block;
+    position: absolute;
+    margin-top: -1.5rem;
+  }
 
+  .p-steps-item {
+    .p-menuitem-link {
+      .p-steps-number {
+        color: var(--primary-600);
+      }
+    }
+  }
+}
+
+::v-deep(.p-tabview-nav-container) {
+  position: relative;
+  height: 13%;
+
+  .p-tabview-nav-content {
+    overflow-x: auto;
+    overflow-y: hidden;
+    scroll-behavior: smooth;
+    scrollbar-width: none;
+    -ms-scroll-chaining: contain auto;
+    overscroll-behavior: contain auto;
+    height: 100%;
+
+    .p-tabview-nav {
+      background: #ffffff;
+      border: 1px solid #dee2e6;
+      border-width: 0 0 2px 0;
+      border-radius: 16px 16px 0 0;
+      height: 100%;
+
+      .p-tabview-nav-link {
+        transition: background-color 0.2s, border-color 0.2s, box-shadow 0.2s;
+        height: 103%;
+      }
+    }
+  }
+}
+
+::v-deep(.p-tabview) {
+  background: #ffffff;
+  color: #495057;
+  box-shadow: 0 2px 1px -1px rgba(0, 0, 0, 20%), 0 1px 1px 0 rgba(0, 0, 0, 14%), 0 1px 3px 0 rgba(0, 0, 0, 12%);
+  border-radius: 16px;
+
+  .p-tabview-nav-link {
+    padding: 0px 0.5rem 0px 0.5rem !important;
+  }
+
+  .p-tabview-panels {
+    background: #ffffff;
+    padding: 0.5rem;
+    border: 0 none;
+    color: #495057;
+    height: 86%;
+    border-bottom-right-radius: 16px;
+    border-bottom-left-radius: 16px;
+
+    .p-tabview-panel {
+      height: 100%;
+    }
+  }
+}
+
+.chart-tabs {
+  height: 100%;
+}
 </style>
+
 
