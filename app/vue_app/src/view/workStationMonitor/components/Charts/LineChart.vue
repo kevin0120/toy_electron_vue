@@ -1,5 +1,5 @@
 <template>
-  <div  :id="divRef" :style="{ width: width, height: height }"></div>
+  <div ref="myref" :id="divRef" :style="{ width: width, height: height }"></div>
 </template>
 
 
@@ -7,8 +7,6 @@
 import * as echarts from 'echarts';
 import {isMobile} from "@/view/workStationMonitor/utils/navigator";
 import {echartfontSize} from "@/view/workStationMonitor/utils/autoAdaptive";
-// import {tooltipFormatter} from "@/view/workStationMonitor/utils/echarts";
-// let chart = null;
 const options = {
   tooltip: {
     trigger: 'axis',
@@ -115,9 +113,8 @@ export default {
     return {
       width: this.w || '100%',
       height: this.h || '100%',
-      enable: true,
       chart: null,
-      options: options,
+      options:options,
     }
   },
   components: {
@@ -178,8 +175,8 @@ export default {
       this.options.grid.left = '13%';
       this.options.grid.right = '12%';
     }
-    if (this.enable) {
-      this.chart = echarts.init(document.getElementById(this.divRef));
+      // this.chart = echarts.init(document.getElementById(this.divRef));
+      this.chart = echarts.init(this.$refs.myref);
       window.addEventListener('resize', this.resize);
       const localemit =this.$emit
       this.chart.on('click', 'series', (params) => {
@@ -213,7 +210,6 @@ export default {
       }
       this.options.series = this.series;
       this.chart.setOption(this.options);
-    }
   },
 
 
@@ -235,7 +231,7 @@ export default {
 
   methods: {
     resize() {
-      // this.chart.resize();
+      // this.chart?.resize();
     }
   },
   watch: {

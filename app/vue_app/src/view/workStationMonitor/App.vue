@@ -7,7 +7,7 @@
         <div class="col-12 md:col-12 lg:col-6 xl:col-6 h-calc-10rem">
           <div class="grid h-full w-full">
             <div class="col-12" style="height: 70%; padding: 0 0 0.5rem 0">
-              <TabView class="chart-tabs">
+              <TabView v-model:activeIndex="activeTabIdx" class="chart-tabs" lazy>
                 <TabPanel v-for="(tab, index) in chartLabel" :key="tab.headerLabel" :header="tab.headerLabel">
                   <LinesChart
                       :divRef="devname(index)"
@@ -147,6 +147,7 @@ export default {
     return {
       showModal: false,
       tag: true,
+      activeTabIdx: 1,
       cars: [
         {vin: 'A123', year: 2021, brand: 'Toyota', color: 'Red'},
         {vin: 'B456', year: 2022, brand: 'Honda', color: 'Blue'},
@@ -187,7 +188,14 @@ export default {
       this.showcircl()
     }, 10000)
 
+  },
+
+  watch: {
+    activeTabIdx(index) {
+      console.log("hello ", index)
+    }
   }
+
 
 }
 </script>
