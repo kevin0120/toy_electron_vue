@@ -94,12 +94,12 @@
     </template>
 
   </AppLayout>
-  <BubbleModal :show="showModal" :status="analysisCurveResult?.tightening_result || 'nok'" @close="showModal = false">
+  <BubbleModal :show="this.showModal" :status="analysisCurveResult?.tightening_result || 'nok'"
+               @close="showModal = false">
   </BubbleModal>
 </template>
 
 <script>
-// import TabView from 'primevue/tabview';
 import BubbleModal from './components/BubbleModal';
 
 import Button from 'primevue/button';
@@ -118,8 +118,10 @@ import {randomHexColorList} from "@/view/workStationMonitor/utils/math";
 import {
   analysisCurveResult1,
   analysisCurveResult2,
+  analysisCurveResult3,
   a,
-  b
+  b,
+  c
 } from "./index";
 
 export default {
@@ -156,33 +158,35 @@ export default {
         {x_label: 'cur_t', y_label: 'cur_m', headerLabel: '时间/扭矩', axisName: {x: '时间', y: '扭矩'}},
         {x_label: 'cur_t', y_label: 'cur_w', headerLabel: '时间/角度', axisName: {x: '时间', y: '角度'}}],
       colors: randomHexColorList(3),
-      chartList: a,
+      chartList: [],
       analysisCurveResult: {}
     };
   },
   methods: {
     devname(id) {
       return 'LinesChart' + id
-
+    },
+    showcircl() {
+      setTimeout(() => {
+            this.showModal = false;
+          }, 3000
+      )
     }
   },
-  props: {},
   mounted() {
     this.analysisCurveResult = analysisCurveResult1;
     this.chartList = a;
-    this.showModal = false;
-
-    setInterval(function () {
-      this.showModal = !this.showModal;
-      console.log(new Date(), this.showModal)
-    }, 3000);
+    this.showModal = true;
+    this.showcircl();
     setInterval(() => {
-      this.analysisCurveResult = this.tag ? analysisCurveResult1 : analysisCurveResult2;
-      this.chartList = this.tag ? a : b;
+      this.analysisCurveResult = this.tag ? analysisCurveResult2 : analysisCurveResult3;
+      this.chartList = this.tag ? b : c;
       this.tag = !this.tag;
       // console.log(new Date(), this.showModal)
-      // this.showModal=true
-    }, 5000)
+      this.showModal = true;
+      this.showcircl()
+    }, 10000)
+
   }
 
 }

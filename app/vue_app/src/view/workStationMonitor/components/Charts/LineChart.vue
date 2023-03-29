@@ -99,13 +99,13 @@ const options = {
     type: 'value'
   },
   series: [
-    {
-      index: 0,
-      name: '暂无数据',
-      type: 'line',
-      data: [{value: [0, 0]}],
-      color: '#08f2f5'
-    }
+    // {
+    //   index: 0,
+    //   name: '暂无数据',
+    //   type: 'line',
+    //   data: [{value: [0, 0]}],
+    //   color: '#08f2f5'
+    // }
   ]
 };
 
