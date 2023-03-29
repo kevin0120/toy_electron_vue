@@ -186,7 +186,7 @@ export default {
       // console.log(new Date(), this.showModal)
       this.showModal = true;
       this.showcircl()
-    }, 10000)
+    }, 20000)
 
   },
 
@@ -195,8 +195,6 @@ export default {
       console.log("hello ", index)
     }
   }
-
-
 }
 </script>
 

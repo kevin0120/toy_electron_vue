@@ -7,6 +7,7 @@
 import * as echarts from 'echarts';
 import {isMobile} from "@/view/workStationMonitor/utils/navigator";
 import {echartfontSize} from "@/view/workStationMonitor/utils/autoAdaptive";
+import { shallowRef} from 'vue'
 const options = {
   tooltip: {
     trigger: 'axis',
@@ -113,8 +114,8 @@ export default {
     return {
       width: this.w || '100%',
       height: this.h || '100%',
-      chart: null,
-      options:options,
+      chart: shallowRef(null),
+      options: options,
     }
   },
   components: {
@@ -175,55 +176,54 @@ export default {
       this.options.grid.left = '13%';
       this.options.grid.right = '12%';
     }
-      // this.chart = echarts.init(document.getElementById(this.divRef));
-      this.chart = echarts.init(this.$refs.myref);
-      window.addEventListener('resize', this.resize);
-      const localemit =this.$emit
-      this.chart.on('click', 'series', (params) => {
-        // 点击命中曲线的时候传递曲线名称
+    //两种都可以
+    // this.chart = echarts.init(document.getElementById(this.divRef));
+    this.chart = echarts.init(this.$refs.myref);
+    window.addEventListener('resize', this.resize)
+
+    const localemit = this.$emit
+    this.chart.on('click', 'series', (params) => {
+      // 点击命中曲线的时候传递曲线名称
+      localemit('getSeriesName', params.seriesName);
+    });
+    this.chart.on('highlight', (params) => {
+      // 曲线高亮时触发
+      if (params.seriesName) {
         localemit('getSeriesName', params.seriesName);
-      });
-      this.chart.on('highlight', (params) => {
-        // 曲线高亮时触发
-        if (params.seriesName) {
-          localemit('getSeriesName', params.seriesName);
-        }
-      });
-      this.chart.getZr().on('click', function (params) {
-        // 点击没有命中曲线的时候传递空字符串
-        if (!params.target?.culling) {
-          localemit('getSeriesName', '');
-        }
-      });
-      this.options.xAxis.name = this.axisName.x;
-      this.options.yAxis.name = this.axisName.y;
-      if (!this.hasSeries.value) {
-        this.chart.showLoading({
-          text: '暂无图表数据...',
-          showSpinner: true,
-          textColor: 'black',
-          maskColor: 'rgba(255, 255, 255, 1)',
-          fontSize: '26px',
-          fontWeight: 'bold'
-        });
-        return;
       }
-      this.options.series = this.series;
-      this.chart.setOption(this.options);
+    });
+    this.chart.getZr().on('click', function (params) {
+      // 点击没有命中曲线的时候传递空字符串
+      if (!params.target?.culling) {
+        localemit('getSeriesName', '');
+      }
+    });
+    this.options.xAxis.name = this.axisName.x;
+    this.options.yAxis.name = this.axisName.y;
+    if (
+        !this.hasSeries.value
+    ) {
+      this.chart.showLoading({
+        text: '暂无图表数据...',
+        showSpinner: true,
+        textColor: 'black',
+        maskColor: 'rgba(255, 255, 255, 1)',
+        fontSize: '26px',
+        fontWeight: 'bold'
+      });
+      return;
+    }
+    this.options.series = this.series;
+    this.chart.setOption(this.options);
   },
-
-
-  unmounted() {
+  beforeUnmount() {
     window.removeEventListener('resize', this.resize);
     this.chart.off('click');
     this.chart.clear();
     this.chart.dispose();
     this.chart = null;
   },
-
-
   computed: {
-
     hasSeries() {
       return this.series?.length > 0;
     }
@@ -231,7 +231,7 @@ export default {
 
   methods: {
     resize() {
-      // this.chart?.resize();
+      this.chart?.resize();
     }
   },
   watch: {
@@ -240,17 +240,20 @@ export default {
         e.color = this.colors[e.index];
       });
       this.chart.setOption(this.options, true);
-    },
+    }
+    ,
     axisName() {
       this.options.xAxis.name = this.axisName.x;
       this.options.yAxis.name = this.axisName.y;
       this.chart.setOption(this.options, true);
-    },
+    }
+    ,
     series() {
       this.options.series = this.series;
       this.chart.hideLoading();
       this.chart.setOption(this.options, true);
-    },
+    }
+    ,
     xAxisShow() {
       this.options.xAxis.show = this.xAxisShow || false;
       this.chart.setOption(this.options, true);
