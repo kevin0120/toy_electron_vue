@@ -35,7 +35,7 @@
     "@electron-forge/maker-rpm": "^6.0.5",
     "@electron-forge/maker-squirrel": "^6.0.5",
     "@electron-forge/maker-zip": "^6.0.5",
-    "electron": "^23.1.2",
+    "electron": "^24.1.2",
     "html-webpack-plugin": "^5.5.0",
     "vue": "^3.2.47",
     "webpack": "^5.76.2",
