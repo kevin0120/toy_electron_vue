@@ -65,7 +65,7 @@
     "@babel/preset-env": "^7.1.0",
     "@babel/preset-flow": "^7.0.0",
     "@babel/preset-react": "^7.0.0",
-    "@babel/preset-typescript": "^7.12.7",
+    "@babel/preset-typescript": "^7.22.5",
     "@babel/register": "^7.0.0",
     "airspeed": "^1.0.4",
     "babel-core": "7.0.0-bridge.0",
